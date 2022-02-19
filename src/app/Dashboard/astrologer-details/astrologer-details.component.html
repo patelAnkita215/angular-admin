@@ -1,0 +1,157 @@
+<div class="main">
+  <div class="user-delete-div">
+    <div>
+      <button (click)="currentSection='details'" class="section-button"
+        [class.selected-section]="currentSection=='details'">Astrologer Details</button>
+      <button (click)="currentSection='history'" class="section-button"
+        [class.selected-section]="currentSection=='history'">Activity</button>
+    </div>
+    <div>
+
+      <button (click)="edit()" class="btn">
+        <img src="assets/edit.svg">
+        Edit Astrologer</button>
+      <button (click)="deleteAstrologer()" class="btn">
+        <img src="assets/delete.svg">
+        Delete Astrologer</button>
+    </div>
+  </div>
+
+  <div *ngIf="currentSection=='details'" class="w-card">
+    <div>
+      <img *ngIf="AstrologerDetails?.ProfilePic!='NA'" class="person-img" [src]="AstrologerDetails?.ProfilePic">
+      <img *ngIf="AstrologerDetails?.ProfilePic=='NA'" class="person-img" src="assets/user-avatar.png">
+    </div>
+    <div>
+      <div class="grp-icon-p">
+        <img class="icons" src="assets/user.svg">
+        <p class="user-name"> {{AstrologerDetails?.FirstName}} {{AstrologerDetails?.LastName}} </p>
+      </div>
+      <div class="grp-icon-p">
+        <img class="icons" src="assets/profession.svg">
+        <p>
+          {{AstrologerDetails?.About_me}}
+        </p>
+      </div>
+      <div class="row grp-col-icons">
+        <div class="col-md-6 col-sm-12">
+          <div class="grp-icon-p">
+            <img class="icons" src="assets/experience.svg">
+            <p> {{AstrologerDetails?.Experience}}Years</p>
+          </div>
+          <div class="grp-icon-p">
+            <img class="icons" src="assets/call.svg">
+            <p>{{AstrologerDetails?.Price}}/min</p>
+          </div>
+
+
+
+
+        </div>
+        <div class="col-md-6 col-sm-12">
+
+          <div class="grp-icon-p">
+            <img class="icons" src="assets/email.svg">
+            <p> {{AstrologerDetails?.EmailID}} </p>
+          </div>
+          <div class="grp-icon-p">
+            <img class="icons" src="assets/mobile.svg">
+            <p>{{AstrologerDetails?.MobileNumber}}</p>
+          </div>
+
+          <!-- <div class="grp-icon-p">
+            <img class="icons" src="assets/chat.svg">
+            <p>{{AstrologerDetails?.ChatRate}}/min</p>
+          </div> -->
+        </div>
+      </div>
+      <div class="grp-icon-p" *ngIf="AstrologerDetails?.Languages?.length">
+        <img class="icons" src="assets/language.svg">
+        <p>
+          <span *ngFor="let item of AstrologerDetails?.Languages">{{item}} &nbsp;</span>
+        </p>
+      </div>
+
+      <div class="grp-icon-p" *ngIf="AstrologerDetails?.Location?.length">
+        <img class="icons" src="assets/location.svg">
+        <p>
+          <span *ngFor="let item of AstrologerDetails?.Location">{{item}} &nbsp;</span>
+        </p>
+      </div>
+
+      <div class="grp-icon-p" *ngIf="AstrologerDetails?.Expertise?.length">
+        <img class="icons" src="assets/profession.svg">
+        <p>
+          <span *ngFor="let item of AstrologerDetails?.Expertise">{{item}} &nbsp;</span>
+        </p>
+      </div>
+
+      <div class="grp-icon-p">
+        <p>
+          <span *ngIf="AstrologerDetails?.IsCallServiceProvided"> Is Call Service Provided : Yes</span>
+          <span *ngIf="!AstrologerDetails?.IsCallServiceProvided"> Is Call Service Provided : No</span>
+        </p>
+      </div>
+      <div class="grp-icon-p">
+        <p>
+          <span *ngIf="AstrologerDetails?.IsChatServiceProvided"> Is Chat Service Provided : Yes</span>
+          <span *ngIf="!AstrologerDetails?.IsChatServiceProvided"> Is Chat Service Provided : No</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+  <div *ngIf="currentSection=='history'" class="w-card">
+    <div>
+      <h3 *ngIf="!AstrologerHistory.length">No activity or transactions </h3>
+    </div>
+    <div class="activity-table-div" *ngIf="AstrologerHistory.length">
+      <table class="table table-hover ">
+        <thead>
+          <tr class="tr-head">
+            <th scope="col"> Customer Name </th>
+            <th scope="col"> Order Date </th>
+            <th scope="col"> Service Date </th>
+            <th scope="col"> Service Type </th>
+            <th style="text-align: center;" scope="col"> ServiceRecordURL </th>
+            <th scope="col"> ServiceDuration </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of AstrologerHistory | paginate: { itemsPerPage: 10, currentPage: p }">
+
+            <td>
+              {{item?.CustomerName}}
+            </td>
+            <td>
+              <span *ngIf="item?.CreatedAt"> {{item?.CreatedAt | date:'medium'}} </span>
+              <span *ngIf="!item?.CreatedAt"> NA </span>
+            </td>
+            <td>
+              <span *ngIf="item?.ServiceDate"> {{item?.ServiceDate | date}} {{item?.ServiceStartTime}} </span>
+              <span *ngIf="!item?.ServiceDate"> NA </span>
+            </td>
+            <td>{{item?.OrderType}}</td>
+            <td style="text-align: center;">
+              <audio *ngIf="item?.ServiceRecordURL!='NA'" controls>
+                <source [src]="item?.ServiceRecordURL" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+              <!-- <span *ngIf="item?.ServiceRecordURL"> {{item?.ServiceRecordURL}} </span> -->
+              <span *ngIf="item?.ServiceRecordURL=='NA'"> NA </span>
+            </td>
+            <td>
+              <span *ngIf="item?.ServiceDuration"> {{item?.ServiceDuration}} </span>
+              <span *ngIf="!item?.ServiceDuration"> NA </span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="pagination-div">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>

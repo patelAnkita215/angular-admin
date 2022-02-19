@@ -1,0 +1,54 @@
+<div class="main">
+  <div>
+    <p class="users-p">Setting</p>
+    <div class="setting-button">
+      <form [formGroup]='form' (ngSubmit)="settingSubmit()" novalidate>
+        <div>
+          <div class="setting-btn" >
+            <div class="setting-label">Deposit Lock</div>
+            <ul>
+              <li>
+                <input type="radio" id="rechargeLock-yes" name="rechargeLock" formControlName="rechargeLock" value="1" />
+                <label for="rechargeLock-yes" class="radio-label">Yes</label>
+              </li>
+              <li>
+                <input type="radio" id="rechargeLock-no" name="rechargeLock" formControlName="rechargeLock" value="0" />
+                <label for="rechargeLock-no" class="radio-label">No</label>
+              </li>
+            </ul>
+          </div>
+          <div class="setting-btn">
+            <div class="setting-label">Payout Lock</div>
+            <ul>
+              <li>
+                <input type="radio" id="payoutLock-yes" name="payoutLock" formControlName="payoutLock" value="1" />
+                <label for="payoutLock-yes" class="radio-label">Yes</label>
+              </li>
+              <li>
+                <input type="radio" id="payoutLock-no" name="payoutLock" formControlName="payoutLock" value="0" />
+                <label for="payoutLock-no" class="radio-label">No</label>
+              </li>
+            </ul>
+          </div>
+          <div class="setting-btn">
+            <div class="setting-label">Complete System Lock</div>
+            <ul>
+              <li>
+                <input type="radio" id="completeSystemLock-yes" name="completeSystemLock" formControlName="completeSystemLock" value="1" />
+                <label for="completeSystemLock-yes" class="radio-label">Yes</label>
+              </li>
+              <li>
+                <input type="radio" id="completeSystemLock-no" name="completeSystemLock" formControlName="completeSystemLock" value="0" />
+                <label for="completeSystemLock-no" class="radio-label">No</label>
+              </li>
+            </ul>
+          </div>
+      </div>
+        <div class="setting-btns">
+          <button type="submit" class="btn-setting">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>

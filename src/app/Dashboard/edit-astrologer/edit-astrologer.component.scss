@@ -1,0 +1,172 @@
+.main {
+  width: 90%;
+  margin: 20px auto;
+  font-family: 'Roboto' !important;
+
+  .users-p {
+    color: rgba(26, 23, 23, 1);
+    font-size: 25px;
+    margin: 0;
+    font-family: 'Roboto';
+    margin: 18px 0px;
+  }
+
+  .edit-div {
+    background-color: #ffffff;
+
+
+    form {
+      max-width: 448px;
+      margin: auto;
+      padding: 30px 0px;
+
+      .astrologer-name {
+        color: #1A1717;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .form-group {
+        color: #1A1717;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 0;
+
+        input {
+          border: #ED7225 1px solid;
+          margin: 5px 0px;
+          border-radius: 8px;
+          padding-left: 20px;
+          color: #7C7C7C;
+          font-family: 'Roboto';
+          letter-spacing: 1px;
+          font-size: 15px;
+        }
+
+        i {
+          color: #212f83;
+        }
+
+        select {
+          border: #ED7225 1px solid;
+          width: 200px;
+          margin-top: 10px;
+        }
+
+        img {
+          height: 16px;
+          margin: 0px 4px;
+        }
+      }
+
+      .save-btn-div {
+        display: flex;
+
+        .save-btn {
+          background-color: #ED7225;
+          color: #FFFFFF;
+          font-weight: 600;
+          width: 64%;
+          margin: 10px auto;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+
+.toggle-switch {
+  display: flex;
+
+  .switch-main {
+    margin-top: 2px;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    // width: 50px;
+    // height: 22px;
+    width: 36px;
+    height: 18px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    // height: 20px;
+    // width: 20px;
+    // left: 4px;
+    height: 18px;
+    width: 20px;
+    left: 0px;
+
+    background-color: #ED7225;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked+.slider {
+    // background-color: #ffffff;
+    background-color: #9cb2e2;
+  }
+
+  input:focus+.slider {
+    box-shadow: 0 0 1px #ffffff;
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(18.5px);
+    -ms-transform: translateX(18.5px);
+    transform: translateX(18.5px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+}
+
+.profile-pic {
+  height: 50px !important;
+  width: 50px !important;
+  object-fit: cover;
+}
+
+.doc-ip {
+  display: none;
+}
+
+.profile-pic-btn {
+  border: 1px solid #ed7225;
+  color: #ed7225;
+  font-size: 12px;
+}
+
+.img-na {
+  margin: auto;
+}

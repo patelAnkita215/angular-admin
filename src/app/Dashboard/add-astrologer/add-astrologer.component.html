@@ -1,0 +1,128 @@
+<div class="main">
+  <div>
+    <p class="users-p">Add Astrologer</p>
+  </div>
+  <div class="edit-div">
+    <form (ngSubmit)='addAstrologer()' [formGroup]='astroAddForm' novalidate>
+      <div class="form-group">
+        <label> <img src="assets/user.svg">First Name</label>
+        <input formControlName="FirstName" class="form-control" placeholder="Enter first name">
+        <div class="errors" *ngIf="submitted && f.FirstName.errors">
+          <div *ngIf="f.FirstName.errors.required">FirstName required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> <img src="assets/user.svg">Last Name</label>
+        <input formControlName="LastName" class="form-control" placeholder="Enter last name">
+        <div class="errors" *ngIf="submitted && f.LastName.errors">
+          <div *ngIf="f.LastName.errors.required">LastName required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> <img src="assets/email.svg">Email id</label>
+        <input formControlName="EmailID" class="form-control" placeholder="Enter email ">
+        <div class="errors" *ngIf="submitted && f.EmailID.errors">
+          <div *ngIf="f.EmailID.errors.required">Email required</div>
+          <div *ngIf="f.EmailID.errors.email">Email not valid</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> <img src="assets/profession.svg"> About astrologer</label>
+        <input formControlName="About_me" class="form-control" placeholder="Enter about astrologer">
+        <div class="errors" *ngIf="submitted && f.About_me.errors">
+          <div *ngIf="f.About_me.errors.required">About_me required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> <img src="assets/experience.svg"> Experince</label>
+        <input formControlName="Experience" class="form-control" placeholder="Enter how many years experince">
+        <div class="errors" *ngIf="submitted && f.Experience.errors">
+          <div *ngIf="f.Experience.errors.required">Experience required</div>
+          <div *ngIf="f.Experience.errors.pattern">Experience accepts only numbers</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label> <img src="assets/mobile.svg"> Phone Number</label>
+        <input formControlName="MobileNumber" class="form-control" placeholder="Enter phone number">
+        <div class="errors" *ngIf="submitted && f.MobileNumber.errors">
+          <div *ngIf="f.MobileNumber.errors.required">Mobile number required</div>
+          <div *ngIf="f.MobileNumber.errors.pattern">Mobile number accepts only numbers</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> <img src="assets/call.svg"> Price per min </label>
+        <input formControlName="Price" class="form-control" placeholder="Enter Price">
+        <div class="errors" *ngIf="submitted && f.Price.errors">
+          <div *ngIf="f.Price.errors.required">Price required</div>
+          <div *ngIf="f.Price.errors.pattern">Price accepts only numbers</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <i class="fas fa-phone-alt"></i>
+          Call Service Provided</label>
+        <select formControlName="IsCallServiceProvided" class="form-select">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <i class="fas fa-comments"></i>
+          Chat Service Provided</label>
+        <select formControlName="IsChatServiceProvided" class="form-select">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+
+
+
+      <div class="form-group">
+        <label> <img src="assets/location.svg"> Location</label>
+        <ng-multiselect-dropdown formControlName="Location" [placeholder]="'Select Locations'"
+          [settings]="dropdownSettings" [data]="allLocations">
+        </ng-multiselect-dropdown>
+        <div class="errors" *ngIf="submitted && f.Location.errors">
+          <div *ngIf="f.Location.errors.required">Locations required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> <img src="assets/language.svg"> Languages</label>
+        <ng-multiselect-dropdown formControlName="Languages" [placeholder]="'Select languages'"
+          [settings]="dropdownSettings1" [data]="allLanguages">
+        </ng-multiselect-dropdown>
+        <div class="errors" *ngIf="submitted && f.Languages.errors">
+          <div *ngIf="f.Languages.errors.required">languages required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label> <img src="assets/profession.svg"> Expertise</label>
+        <ng-multiselect-dropdown formControlName="Expertise" [placeholder]="'Select Expertise'"
+          [settings]="dropdownSettings1" [data]="allExpertise">
+        </ng-multiselect-dropdown>
+        <div class="errors" *ngIf="submitted && f.Expertise.errors">
+          <div *ngIf="f.Expertise.errors.required">Expertises required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label> <img src="assets/user-profile.svg"> Profile Image</label> <br>
+        <button type="button" class="btn profile-pic-btn" (click)="profilePic.click()">
+          <img src="assets/upload.svg"> Select File
+        </button>
+        <input type="file" #profilePic (input)="profilePicture($event)" class="doc-ip"
+          accept="image/jpg, image/jpeg, image/png">
+        <img class="profilePic" *ngIf="base64Img" [src]="base64Img">
+      </div>
+      <div class="save-btn-div">
+        <button type="submit" class="btn save-btn">Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>

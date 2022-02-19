@@ -1,0 +1,487 @@
+<div class="main">
+  <div class="user-delete-div">
+    <button
+      (click)="showSection = 'USER'"
+      [ngClass]="{ 'active-sec': showSection == 'USER' }"
+    >
+      User Details
+    </button>
+    <button
+      (click)="showSection = 'DASHBOARD'"
+      [ngClass]="{ 'active-sec': showSection == 'DASHBOARD' }"
+    >
+      Dashboard
+    </button>
+    <button
+      (click)="showSection = 'TRANSACTIONS'"
+      [ngClass]="{ 'active-sec': showSection == 'TRANSACTIONS' }"
+    >
+      Transactions
+    </button>
+    <button
+      (click)="showSection = 'SETTINGS'"
+      [ngClass]="{ 'active-sec': showSection == 'SETTINGS' }"
+    >
+      Settings
+    </button>
+
+    <!-- <button (click)="deleteUser()" class="btn">
+      <img src="assets/delete.svg">
+      Remove User</button> -->
+  </div>
+  <div class="w-card" *ngIf="showSection == 'USER'">
+    <div class="d-flex">
+      <div>
+        <img
+          *ngIf="userDetails?.profilePic == 'NA'"
+          class="person-img"
+          src="assets/user-avatar.png"
+        />
+        <img
+          *ngIf="userDetails?.profilePic != 'NA'"
+          class="person-img"
+          [src]="userDetails?.profilePic"
+        />
+      </div>
+      <div style="display: flex; width: 100%">
+        <h3 class="m-auto">{{ userDetails?.firstName }}</h3>
+      </div>
+    </div>
+
+    <table class="table">
+      <tr>
+        <td>Email Id :</td>
+        <td>{{ userDetails?.emailId }}</td>
+      </tr>
+      <tr>
+        <td>Mobile Number :</td>
+        <td>{{ userDetails?.mobileNumber }}</td>
+      </tr>
+      <tr>
+        <td>Referral Code :</td>
+        <td>{{ userDetails?.myReferralCode }}</td>
+      </tr>
+      <tr>
+        <td>Referred By Code :</td>
+        <td>{{ userDetails?.referredByCode }}</td>
+      </tr>
+      <tr>
+        <td>Payment Page Id :</td>
+        <td>{{ userDetails?.paymentPageId }}</td>
+      </tr>
+      <tr>
+        <td>Wallet Amount :</td>
+        <td>{{ userDetails?.walletAmount }}</td>
+      </tr>
+      <tr>
+        <td>Wallet Commission Percentage :</td>
+        <td>{{ userDetails?.walletCommissionPercentage }}</td>
+      </tr>
+      <tr>
+        <td>DOB :</td>
+        <td>{{ userDetails?.DOB }}</td>
+      </tr>
+      <h5 *ngIf="userDetails?.userType == 'BUSINESS'">Business Details</h5>
+      <tr *ngIf="userDetails?.userType == 'BUSINESS'">
+        <td>Company Name :</td>
+        <td>{{ userDetails?.companyName }}</td>
+      </tr>
+      <tr *ngIf="userDetails?.userType == 'BUSINESS'">
+        <td>Nature of Business :</td>
+        <td>{{ userDetails?.natureofBusiness }}</td>
+      </tr>
+      <tr *ngIf="userDetails?.userType == 'BUSINESS'">
+        <td>Monthly Business Commitment :</td>
+        <td>{{ userDetails?.monthlyBusinessCommitment }}</td>
+      </tr>
+    </table>
+
+    <div
+      *ngIf="
+        userDetails?.businessInsidePhotoURL?.length != 0 &&
+        userDetails?.businessInsidePhotoURL != 'NA'
+      "
+    >
+      <img
+        class="upload-img-png"
+        alt="businessInsidePhotoURL"
+        [src]="userDetails?.businessInsidePhotoURL"
+      />
+      <p>Inside Photo</p>
+    </div>
+
+    <div
+      *ngIf="
+        userDetails?.businessOutsidePhotoURL?.length != 0 &&
+        userDetails?.businessOutsidePhotoURL != 'NA'
+      "
+    >
+      <img
+        class="upload-img-png"
+        alt="businessOutsidePhotoURL"
+        [src]="userDetails?.businessOutsidePhotoURL"
+      />
+      <p>Outside Photo</p>
+    </div>
+
+    <div
+      *ngIf="
+        userDetails?.authorizedPANCardURL?.length != 0 &&
+        userDetails?.authorizedPANCardURL != 'NA'
+      "
+    >
+      <img
+        class="upload-img-png"
+        alt="businessOutsidePhotoURL"
+        [src]="userDetails?.authorizedPANCardURL"
+      />
+      <p>Pancard</p>
+    </div>
+
+    <div
+      *ngIf="
+        userDetails?.businessProofURL?.length != 0 &&
+        userDetails?.businessProofURL != 'NA'
+      "
+    >
+      <a
+        class="upload-img-png"
+        target="_blank"
+        [href]="userDetails?.businessProofURL"
+      >
+        Business Proof
+      </a>
+    </div>
+  </div>
+  <div class="w-card" *ngIf="showSection == 'TRANSACTIONS'">
+    <div class="dates-ips">
+      <input [(ngModel)]="startDate" class="date-ips" type="Date" />
+      <input [(ngModel)]="endDate" class="date-ips" type="Date" />
+      <button (click)="filterByDate()" class="go-btn">Go</button>
+    </div>
+    <table class="table table-hover transaction-table">
+      <thead>
+        <tr class="tr-head">
+          <th>Date</th>
+          <th>Order ID</th>
+          <th>Type</th>
+          <th>Withdrawal</th>
+          <th>Deposits</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of userTransactions">
+          <td class="cursor-pointer" (click)="showTransactionModal()" data-toggle="modal" data-target="#exampleModal">
+            {{ item?.createdAt | date }}
+          </td>
+          <td class="cursor-pointer" (click)="showTransactionModal()" data-toggle="modal" data-target="#exampleModal">
+            {{ item?.wallet_transactionId }}
+          </td>
+          <td class="cursor-pointer" (click)="showTransactionModal()" data-toggle="modal" data-target="#exampleModal">
+            <span *ngIf="item?.transactionType == 1">Recharge</span>
+            <span *ngIf="item?.transactionType == 2">Payout</span>
+            <span *ngIf="item?.transactionType == 3">Wallet Debit</span>
+            <span *ngIf="item?.transactionType == 4">Wallet Credit</span>
+          </td>
+          <td>
+            <span
+              *ngIf="item?.transactionType == 1 || item?.transactionType == 3"
+              >₹{{ item?.amount | number: "1.0":"en-US" }}</span
+            >
+          </td>
+          <td>
+            <span
+              *ngIf="item?.transactionType == 2 || item?.transactionType == 4"
+              >₹{{ item?.amount | number: "1.0":"en-US" }}</span
+            >
+          </td>
+          <td>
+            <span> Completed</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h5 *ngIf="!userTransactions?.length">No records found</h5>
+  </div>
+  <div class="w-card" *ngIf="showSection == 'DASHBOARD'">
+    <h3>Dashboard</h3>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="dashboard-card">
+          <h5>Current Month Loaded</h5>
+          <h3>
+            {{
+              userDashboard?.currentMonth_amountLoaded | currency: "INR":true
+            }}
+          </h3>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="dashboard-card">
+          <h5>Current Month Payout</h5>
+          <h3>
+            {{
+              userDashboard?.currentMonth_amountPayout | currency: "INR":true
+            }}
+          </h3>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="dashboard-card">
+          <h5>Current Month Amount Total</h5>
+          <h3>
+            {{ userDashboard?.currentMonth_amountTotal | currency: "INR":true }}
+          </h3>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="dashboard-card">
+          <h5>Previous Month Amount Loaded</h5>
+          <h3>
+            {{
+              userDashboard?.previousMonth_amountLoaded | currency: "INR":true
+            }}
+          </h3>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="dashboard-card">
+          <h5>Previous Month Amount Payout</h5>
+          <h3>
+            {{
+              userDashboard?.previousMonth_amountPayout | currency: "INR":true
+            }}
+          </h3>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="dashboard-card">
+          <h5>Previous Month Amount Total</h5>
+          <h3>
+            {{
+              userDashboard?.previousMonth_amountTotal | currency: "INR":true
+            }}
+          </h3>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="dashboard-card">
+          <h5>Current Month Payouts</h5>
+          <h3>{{ userDashboard?.currentMonth_payoutCount }}</h3>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="dashboard-card">
+          <h5>Previous Month Payouts</h5>
+          <h3>{{ userDashboard?.previousMonth_payoutCount }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-card" *ngIf="showSection == 'SETTINGS'">
+    <div>
+      <form (ngSubmit)="settingUser()" [formGroup]="settingUserForm" novalidate>
+        <div>
+          <div class="setting-btn">
+            <div class="setting-label">Block User</div>
+            <ul>
+              <li>
+                <input type="radio" id="rechargeLock-yes" name="userBlock" />
+                <label for="rechargeLock-yes" class="radio-label">Yes</label>
+              </li>
+              <li>
+                <input type="radio" id="rechargeLock-no" name="userBlock" />
+                <label for="rechargeLock-no" class="radio-label">No</label>
+              </li>
+            </ul>
+          </div>
+          <div class="setting-btn">
+            <div class="setting-label">Block Payouts</div>
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  id="payoutBlock-yes"
+                  formControlName="PayoutBlocked"
+                  name="PayoutBlocked"
+                  [value]="1"
+                />
+                <label for="payoutBlock-yes" class="radio-label">Yes</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  id="payoutBlock-no"
+                  formControlName="PayoutBlocked"
+                  name="PayoutBlocked"
+                  [value]="0"
+                />
+                <label for="payoutBlock-no" class="radio-label">No</label>
+              </li>
+            </ul>
+          </div>
+          <div class="setting-btn">
+            <div class="setting-label">Wallet commision (%)</div>
+            <div class="settings-width">
+              <input
+                type="text"
+                class="form-control text-center"
+                formControlName="walletCommissionPercentage"
+              />
+            </div>
+          </div>
+          <div class="setting-btn">
+            <div class="setting-label">Payout Charge Type</div>
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  id="fixed"
+                  formControlName="payoutChargeType"
+                  [value]="1"
+                />
+                <label for="fixed" class="radio-label">Fixed</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  id="percentage"
+                  formControlName="payoutChargePercentage"
+                  [value]="1"
+                />
+                <label for="percentage" class="radio-label">Percentage</label>
+              </li>
+              <li class="settings-width">
+                <input
+                  type="text"
+                  class="form-control text-center"
+                  formControlName="payoutChargeAmount"
+                />
+              </li>
+            </ul>
+          </div>
+          <div class="setting-btn">
+            <div class="setting-label">Allow Commission</div>
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  id="allowCommission-yes"
+                  name="allowCommission"
+                />
+                <label for="allowCommission-yes" class="radio-label">Yes</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  id="allowCommission-no"
+                  name="allowCommission"
+                />
+                <label for="allowCommission-no" class="radio-label">No</label>
+              </li>
+            </ul>
+          </div>
+          <div class="setting-btn">
+            <div class="setting-label">Monthly Commitment (Rs)</div>
+            <div class="settings-width">
+              <input
+                type="text"
+                class="form-control text-center"
+                formControlName="monthlyBusinessCommitment"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="setting-btns">
+          <button type="submit" class="btn-setting">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>
+<!-- transation modal -->
+<div class="modal transaction-modal" [class.show]="show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+  <div class="modal-dialog transaction-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-dismiss="modal" (click)="showTransactionModal()"></button>
+        <div class="transaction-userdetail-table">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td class="d-flex justify-content-between">Name<span>:</span></td>
+                <td>{{ userDetails?.firstName }}</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Mobile Number<span>:</span></td>
+                <td>1234567890</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Bank Account Number<span>:</span></td>
+                <td>1234567890</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Bank IFSC Code<span>:</span></td>
+                <td>ICIC0000244</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Order Id<span>:</span></td>
+                <td>21061</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">UTR No<span>:</span></td>
+                <td>204721005801</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Sub total<span>:</span></td>
+                <td>₹0</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Charges<span>:</span></td>
+                <td>₹0</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">GST Amount<span>:</span></td>
+                <td>₹0</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Amount<span>:</span></td>
+                <td>₹14800</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Transaction Type<span>:</span></td>
+                <td>Payout</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Date<span>:</span></td>
+                <td>16 Feb 2022 09:44 PM</td><!--{{ item?.createdAt | date:'MMM d y h:mm a' }}-->
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Transactions Status<span>:</span></td>
+                <td class="padding-3px"><span class="process-bg">Processed</span></td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Notes<span>:</span></td>
+                <td>pay</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">Razorpay TransactionId<span>:</span></td>
+                <td>pout_lwk6ajskNPLS6f</td>
+              </tr>
+              <tr>
+                <td class="d-flex justify-content-between">INVOICE<span>:</span></td>
+                <td class="padding-6px">
+                  <a href="/" target="_blank" class="btn btn-green">Invoice_PAYVIN16504785721061.pdf</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

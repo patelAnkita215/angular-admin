@@ -1,0 +1,57 @@
+<div>
+  <div class="main">
+
+    <div class="left-main">
+      <div class="left-div">
+
+ 
+      </div>
+    </div>
+
+    <div class="right-main">
+      <div class="right-sub">
+        <div>
+          <p *ngIf="!isForgotPage" class="welcome-p">Welcome to <span class="welcome-span">Payville</span> </p>
+          <p *ngIf="isForgotPage" class="welcome-p forgot-head-p">Forgot password</p>
+        </div>
+        <div>
+       
+
+          <div class="form-div">
+            <form (ngSubmit)='login()' [formGroup]='loginForm' novalidate *ngIf="!isForgotPage">
+              <div>
+                <p class="username-p">Username</p>
+                <div>
+                  <img src="assets/user.svg" class="fa fa-user fa-5x user-icon">
+                  <input formControlName='emailId' class="username-ip" placeholder="Enter Username">
+                </div>
+              </div>
+              <div>
+
+                <p class="password-p">Password </p>
+                <div>
+                  <img src="assets/lock.svg" class="fa fa-user fa-5x user-icon">
+                  <input formControlName='password' class="username-ip" type="password" placeholder="Enter Password">
+                </div>
+              </div>
+
+              <button [disabled]='loginForm.invalid' class="btn btn-block btn-primary login-btn"> Log in</button>
+              <!-- <p class="forgot-p c-pointer" (click)="isForgotPage=true">Forgot Password?</p> -->
+            </form>
+            <form *ngIf="isForgotPage">
+              <p class="enter-email">Enter Email ID</p>
+              <div>
+                <img src="assets/message.svg" class="fa fa-user fa-5x user-icon">
+                <input class="username-ip" placeholder="Enter Your email ID">
+              </div>
+              <button class="btn btn-block btn-primary login-btn"> Reset Password</button>
+              <p class="forgot-p c-pointer" (click)="isForgotPage=false">Go to Login page</p>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

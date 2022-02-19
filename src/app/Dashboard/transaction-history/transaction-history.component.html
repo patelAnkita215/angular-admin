@@ -1,0 +1,62 @@
+<div class="main">
+  <div>
+    <div class="head-add-div">
+      <p class="users-p">Transactions </p>
+    </div>
+    <div class="dates-ips">
+
+      <input [(ngModel)]="startDate" class="date-ips" type="Date" />
+      <input [(ngModel)]="endDate" class="date-ips" type="Date" />
+      <button (click)='filterByDate()' class="go-btn">Go</button>
+    </div>
+    <div>
+      <table class="table table-hover table-borderless">
+        <thead>
+          <tr class="tr-head">
+            <th>Date</th>
+            <th>Order ID</th>
+            <th>Type</th>
+            <th>Withdrawal</th>
+            <th>Deposits</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of transactions | paginate: { itemsPerPage: 10, currentPage: p }">
+
+            <td>
+              {{item?.createdAt | date}}
+            </td>
+            <td>
+              {{item?.wallet_transactionId}}
+            </td>
+            <td>
+              <span *ngIf="item?.transactionType ==1">Recharge</span>
+              <span *ngIf="item?.transactionType ==2">Payout</span>
+              <span *ngIf="item?.transactionType ==3">Wallet Debit</span>
+              <span *ngIf="item?.transactionType ==4">Wallet Credit</span>
+
+            </td>
+            <td>
+              <span
+                *ngIf="item?.transactionType == 1 || item?.transactionType == 3">₹{{item?.amount | number:'1.0':'en-US' }}</span>
+            </td>
+            <td>
+              <span
+                *ngIf="item?.transactionType == 2 || item?.transactionType == 4">₹{{item?.amount | number:'1.0':'en-US' }}</span>
+
+            </td>
+            <td>
+              <span> Completed</span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="pagination-div">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>

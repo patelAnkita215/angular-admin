@@ -1,0 +1,94 @@
+<div class="container-fluid row-main">
+  <div class="row">
+    <div class="col-sm-3 col-md-3 sidebar">
+      <div class="logo-main">
+
+        <img class="logo-svg" src="assets/dashboard_logo.svg">
+      </div>
+      <ul class="nav nav-sidebar">
+        <li>
+          <a routerLink="users" routerLinkActive="active-link">
+            <img src="assets/dashboard.png">
+            <span>Users List</span>
+
+          </a>
+        </li>
+        <li>
+          <a routerLink="business-users" routerLinkActive="active-link">
+            <img src="assets/dashboard.png">
+            <span>Business Users </span>
+
+          </a>
+        </li>
+        <li>
+          <a routerLink="transaction-history" routerLinkActive="active-link">
+            <img src="assets/transactions.png">
+
+            <span>Transactions </span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="setting" routerLinkActive="active-link">
+            <img src="assets/settings.png">
+
+            <span>Setting </span>
+          </a>
+        </li>
+
+        <li>
+          <a (click)="logout()" style="cursor: pointer;" routerLinkActive="active-link">
+            <img src="assets/logout.png">
+            <span>Logout </span>
+          </a>
+        </li>
+
+        <!-- <li>
+          <a routerLink="wallet-transactions" routerLinkActive="active-link">
+            <img src="assets/wallet.svg">
+            <span>Wallet Transactions </span>
+
+          </a>
+        </li> -->
+
+
+
+      </ul>
+    </div>
+    <div class="col-sm-9 col-md-9 main right-col">
+      <div class="fixed-header">
+
+        <div *ngIf="false" class="nav-header">
+          <div class="row nav-header-sub">
+            <div class="col-9 d-flex">
+              <div class="search-ip-div">
+                <!-- <input #t (keydown.enter)="search(t.value)" class="search-ip" placeholder="Search"> -->
+              </div>
+              <!-- <button (click)="search(t.value)">Search</button> -->
+              <!-- <button>X</button> -->
+              <!-- <img class="search-icon" src="assets/search.svg"> -->
+            </div>
+            <div class="col-3 profile-div">
+              <div class="d-in-flex">
+                <img (click)="showEditLogout=!showEditLogout" class="arrow-down" src="assets/arrow-down.svg">
+                <img class="profile-pic" src="assets/user-avatar.png">
+                <p class="profile-name">{{adminDetails?.FirstName}} {{adminDetails?.LastName}}</p>
+              </div>
+              <div *ngIf="showEditLogout" class="edit-pop">
+                <p (click)="editAdmin()"> <img class="profile-pic-small" src="assets/profile-pic.png"> <span>Edit
+                    Profile</span> </p>
+                <p (click)="logout()" class="logout"> <img class="logout-img" src="assets/logout.svg">
+                  <span>Logout</span> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="router-div">
+
+        <router-outlet></router-outlet>
+      </div>
+
+
+    </div>
+  </div>
+</div>

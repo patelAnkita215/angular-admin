@@ -1,0 +1,87 @@
+.main {
+  width: 90%;
+  margin: 20px auto;
+  font-family: 'Roboto' !important;
+
+  .users-p {
+    color: rgba(26, 23, 23, 1);
+    font-size: 25px;
+    margin: 0;
+    font-family: 'Roboto';
+    margin: 18px 0px;
+  }
+
+  .edit-div {
+    background-color: #ffffff;
+
+
+    form {
+      max-width: 448px;
+      margin: auto;
+      padding: 30px 0px;
+
+      .form-group {
+        color: #1A1717;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 0;
+
+        input {
+          border: #ED7225 1px solid;
+          margin: 5px 0px;
+          border-radius: 8px;
+          padding-left: 20px;
+          color: #7C7C7C;
+          font-family: 'Roboto';
+          letter-spacing: 1px;
+          font-size: 15px;
+        }
+        i{
+          color: #212f83;
+        }
+        select {
+          border: #ED7225 1px solid;
+          width: 200px;
+          margin-top: 10px;
+        }
+
+        img {
+          height: 16px;
+          margin: 0px 4px;
+        }
+      }
+
+      .save-btn-div {
+        display: flex;
+
+        .save-btn {
+          background-color: #ED7225;
+          color: #FFFFFF;
+          font-weight: 600;
+          width: 64%;
+          margin: 10px auto;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.doc-ip {
+  display: none;
+}
+
+.profilePic {
+  height: 70px !important;
+  width: 70px !important;
+  object-fit: cover !important;
+  margin-top: -22px !important;
+  margin-left: 20px !important;
+}
+
+.profile-pic-btn {
+  border: 1px solid #ed7225;
+  color: #ed7225;
+  font-size: 12px;
+  margin-top: 10px;
+}

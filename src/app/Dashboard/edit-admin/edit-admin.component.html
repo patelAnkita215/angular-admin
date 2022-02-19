@@ -1,0 +1,108 @@
+<div class="main">
+  <p class="edit-p">Edit Profile</p>
+  <div class="d-flex">
+    <button (click)="isMyAccount=true" [class.selected-btn]="isMyAccount" class="my-account-btn btn"> My account </button>
+    <button (click)="isMyAccount=false" [class.selected-btn]="!isMyAccount" class="change-password-btn btn"> Change Password </button>
+  </div>
+
+  <div *ngIf="isMyAccount" class="form-div">
+    <p class="my-account-head">
+      <img src="assets/user.svg">
+      My Account
+    </p>
+    <form (ngSubmit)='editAdmin()' [formGroup]='editAdminForm' novalidate>
+      <div class="form-group">
+        <label> <img src="assets/user.svg">First Name</label>
+        <input readonly formControlName="FirstName" class="form-control" placeholder="Enter first name">
+        <div class="errors" *ngIf="submitted && f.FirstName.errors">
+          <div *ngIf="f.FirstName.errors.required">FirstName required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> <img src="assets/user.svg">Last Name</label>
+        <input readonly formControlName="LastName" class="form-control" placeholder="Enter last name">
+        <div class="errors" *ngIf="submitted && f.LastName.errors">
+          <div *ngIf="f.LastName.errors.required">LastName required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> <img src="assets/mobile.svg"> Mobile Number</label>
+        <input readonly formControlName="MobileNumber" class="form-control" placeholder="Enter phone number">
+        <div class="errors" *ngIf="submitted && f.MobileNumber.errors">
+          <div *ngIf="f.MobileNumber.errors.required">Mobile number required</div>
+          <div *ngIf="f.MobileNumber.errors.pattern">Mobile number accepts only numbers</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> <img src="assets/email.svg">Email</label>
+        <input readonly formControlName="EmailID" class="form-control" placeholder="Enter email">
+        <div class="errors" *ngIf="submitted && f.EmailID.errors">
+          <div *ngIf="f.EmailID.errors.required">Email required</div>
+          <div *ngIf="f.EmailID.errors.email">Email not valid</div>
+        </div>
+      </div>
+
+      <!-- <div class="save-btn-div">
+        <button type="submit" class="btn save-btn">
+          <img src="assets/right.svg">
+          Submit
+        </button>
+        <button type="button" class="btn cancel-btn">
+          <img src="assets/close.svg">
+          Cancel
+        </button>
+      </div> -->
+
+    </form>
+  </div>
+
+  <div *ngIf="!isMyAccount" class="form-div">
+    <p class="my-account-head">
+      <img src="assets/user.svg">
+      Change Password
+    </p>
+    <form (ngSubmit)='changePassword()' [formGroup]='passwordChangeForm' novalidate>
+      <div class="form-group">
+        <label> Current Password</label>
+        <input type="password" formControlName="CurrentPassword" class="form-control" placeholder="Enter Current Password">
+        <div class="errors" *ngIf="submittedPassword && g.CurrentPassword.errors">
+          <div *ngIf="g.CurrentPassword.errors.required">Current Password required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>New Password</label>
+        <input type="password" formControlName="NewPassword" class="form-control" placeholder="Enter New Password">
+        <div class="errors" *ngIf="submittedPassword && g.NewPassword.errors">
+          <div *ngIf="g.NewPassword.errors.required">New Password required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> Confirm Password</label>
+        <input type="password" formControlName="ConfirmPassword" class="form-control" placeholder="Enter Confirm Password">
+        <div class="errors" *ngIf="submittedPassword && g.ConfirmPassword.errors">
+          <div *ngIf="g.ConfirmPassword.errors.required">Confirm Password required</div>
+        </div>
+      </div>
+
+      <div class="save-btn-div">
+        <button type="submit" class="btn save-btn">
+          <img src="assets/right.svg">
+          Submit
+        </button>
+        <button type="button" class="btn cancel-btn">
+          <img src="assets/close.svg">
+          Cancel
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div>
+
+  </div>
+
+</div>
+
+
+<ngx-spinner></ngx-spinner>

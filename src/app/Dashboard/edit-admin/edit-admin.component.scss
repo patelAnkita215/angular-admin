@@ -1,0 +1,114 @@
+.main {
+  width: 90%;
+  margin: 20px auto;
+  font-family: "Roboto" !important;
+
+  .edit-p {
+    color: #1a1717;
+    font-size: 25px;
+    line-height: 30px;
+    font-family: "Roboto";
+  }
+
+  .my-account-btn {
+    font-size: 12px;
+    height: 32px;
+    padding: 5px 20px;
+    background-color: #ffffff;
+    color: #ED7225;
+    font-family: "Roboto" !important;
+  }
+
+  .change-password-btn {
+    font-size: 12px;
+    height: 32px;
+    padding: 5px 20px;
+    background-color: #ffffff;
+    color: #ED7225;
+    font-family: "Roboto" !important;
+    margin: 0 8px;
+  }
+
+  .selected-btn {
+    color: #ffffff !important;
+    background-color: #ED7225 !important;
+  }
+
+  .form-div {
+    max-width: 400px;
+    background: #ffffff;
+    margin-top: 12px;
+
+    .my-account-head {
+      text-align: center;
+      border-bottom: #002178 1px solid;
+      padding: 10px 0px;
+      color: #002178;
+      font-size: 20px;
+    }
+  }
+
+  form {
+    width: 80%;
+    margin: auto;
+
+    .form-group {
+      color: #1A1717;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 5px 0;
+
+      input {
+        border: #7C7C7C 1px solid;
+        margin: 5px 0px;
+        border-radius: 8px;
+        padding-left: 20px;
+        color: #7C7C7C;
+        font-family: 'Roboto';
+        letter-spacing: 1px;
+        font-size: 15px;
+      }
+
+      img {
+        height: 16px;
+        margin: 0px 4px;
+      }
+    }
+
+    .save-btn-div {
+      display: flex;
+
+      .save-btn {
+        border: 1px #ED7225 solid;
+        padding: 0;
+        height: 45px;
+        background-color: #ffffff;
+        color: #ED7225;
+        font-weight: 600;
+        font-size: 14px;
+        width: 64%;
+        margin: 10px 15px;
+
+        img {
+          height: 18px;
+          width: 18px;
+        }
+      }
+
+      .cancel-btn {
+        background-color: #ED7225;
+        color: #FFFFFF;
+        font-weight: 600;
+        width: 64%;
+        margin: 10px 15px;
+        font-size: 14px;
+
+        img {
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+  }
+
+}

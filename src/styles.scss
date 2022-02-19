@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import "../node_modules/ngx-toastr/toastr.css";
+
+
+.c-pointer {
+  cursor: pointer;
+}
+
+.errors {
+  font-weight: normal;
+  color: red;
+  margin-left: 10px;
+}
+
+.pagination-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.select-action{
+  width: 100%;
+}

@@ -1,0 +1,114 @@
+.main {
+  width: 90%;
+  margin: 20px auto;
+  font-family: 'Roboto' !important;
+
+  .user-delete-div {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px;
+
+    .users-p {
+      color: rgba(26, 23, 23, 1);
+      font-size: 25px;
+      margin: 0;
+      font-family: 'Roboto';
+    }
+
+    .section-button {
+      color: #ed7225;
+      font-size: 21px;
+      margin: 0;
+      font-family: "Roboto";
+      background: #ffffff;
+      border-radius: 0;
+      padding: 0 5px;
+    }
+
+    .selected-section {
+      color: #ffffff;
+      background: #ed7225;
+    }
+
+    img {
+      width: 16px;
+      margin-top: -3px;
+    }
+
+    button {
+      color: #ED7225;
+      border: solid 1px #ED7225;
+      border-radius: 10px;
+      font-size: 13px;
+      margin: 0 10px;
+    }
+  }
+
+  //   .users-p {
+  //     color: rgba(26, 23, 23, 1);
+  //     font-size: 25px;
+  //     line-height: 30px;
+  //     font-family: 'Roboto';
+  //   }
+
+  .w-card {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 10px;
+    width: 96%;
+    display: flex;
+
+    .person-img {
+      height: 200px;
+      width: auto;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .grp-col-icons {
+      width: 80%;
+    }
+
+    .grp-icon-p {
+      display: flex;
+      margin: 8px 20px;
+
+      .user-name {
+        font-weight: 800 !important;
+        color: #1A1717 !important;
+      }
+
+      p {
+        margin: 0 5px;
+        color: #7C7C7C;
+      }
+    }
+
+    .icons {
+      height: 20px;
+      width: auto;
+      margin: 0 5px;
+    }
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+
+@media screen and (max-width: 1024px) and (min-width: 315px) {
+  .w-card {
+    display: block !important;
+
+    .person-img {
+      margin: auto;
+      display: flex;
+    }
+  }
+}
+
+.activity-table-div {
+  width: 100%;
+  overflow-x: auto;
+}

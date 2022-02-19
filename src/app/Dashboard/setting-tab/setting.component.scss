@@ -1,0 +1,89 @@
+.main {
+    width: 90%;
+    margin: 20px auto;
+    font-family: 'Roboto' !important;
+  
+    .users-p {
+      color: rgba(26, 23, 23, 1);
+      font-size: 25px;
+      line-height: 30px;
+      font-family: 'Roboto';
+    }
+  
+    .setting-button {
+      margin-top: 20px;
+      .setting-btn {
+        margin-bottom: 15px;
+
+        .setting-label {color: #000;font-size: 16px;font-weight: 700;margin-bottom: 10px;}
+
+        ul{
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          overflow: auto;
+          display: flex;
+
+          li{
+            color: #000;
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            input[type=radio]{
+              position: absolute;
+              // visibility: hidden;
+              opacity: 0;
+
+              + .radio-label {
+                &:before {
+                  content: '';
+                  background: #cac9c9;
+                  border-radius: 100%;
+                  display: inline-block;
+                  width: 15px;
+                  height: 15px;
+                  position: relative;
+                  top: 2px;
+                  margin-right: 1em; 
+                  cursor: pointer;
+                  text-align: center;
+                  transition: all 250ms ease;
+                }
+              }
+              &:checked {
+                + .radio-label {
+                  &:before {
+                    background-color: #6865F0;
+                  }
+                }
+              
+            }
+          }
+
+            label{
+              display: block;
+              position: relative;
+              font-weight: 300;
+              font-size: 16px;
+              padding-right: 30px;
+              z-index: 9;
+              cursor: pointer;
+              -webkit-transition: all 0.25s linear;
+              transition: all 0.25s linear;
+            }
+
+          }
+        }
+      }
+      .setting-btns {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 30px;
+      
+        .btn-setting {background: #6865F0;color: #fff;padding: 4px 20px;border: 0;}
+      }
+    }
+  }
+  
