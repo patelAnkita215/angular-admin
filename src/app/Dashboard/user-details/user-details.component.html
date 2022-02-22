@@ -172,13 +172,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of userTransactions">
-          <td class="cursor-pointer" (click)="showTransactionModal()" data-toggle="modal" data-target="#exampleModal">
+          <td class="cursor-pointer" (click)="showTransactionModal($event,item)" data-toggle="modal" data-target="#exampleModal">
             {{ item?.createdAt | date }}
           </td>
-          <td class="cursor-pointer" (click)="showTransactionModal()" data-toggle="modal" data-target="#exampleModal">
+          <td class="cursor-pointer" (click)="showTransactionModal($event,item)" data-toggle="modal" data-target="#exampleModal">
             {{ item?.wallet_transactionId }}
           </td>
-          <td class="cursor-pointer" (click)="showTransactionModal()" data-toggle="modal" data-target="#exampleModal">
+          <td class="cursor-pointer" (click)="showTransactionModal($event,item)" data-toggle="modal" data-target="#exampleModal">
             <span *ngIf="item?.transactionType == 1">Recharge</span>
             <span *ngIf="item?.transactionType == 2">Payout</span>
             <span *ngIf="item?.transactionType == 3">Wallet Debit</span>
@@ -408,7 +408,7 @@ aria-hidden="true">
   <div class="modal-dialog transaction-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <button type="button" class="btn-close" data-dismiss="modal" (click)="showTransactionModal()"></button>
+        <button type="button" class="btn-close" data-dismiss="modal" (click)="close()"></button>
         <div class="transaction-userdetail-table">
           <table class="table table-striped">
             <tbody>
@@ -418,7 +418,7 @@ aria-hidden="true">
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Mobile Number<span>:</span></td>
-                <td>1234567890</td>
+                <td>{{ userTransactionsPopup?.mobileNumber}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Bank Account Number<span>:</span></td>
@@ -430,52 +430,62 @@ aria-hidden="true">
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Order Id<span>:</span></td>
-                <td>21061</td>
+                <td>{{ userTransactionsPopup?.wallet_transactionId}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">UTR No<span>:</span></td>
-                <td>204721005801</td>
+                <td>{{ userTransactionsPopup?.utr}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Sub total<span>:</span></td>
-                <td>₹0</td>
+                <td>₹{{ userTransactionsPopup?.subtotalAmount}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Charges<span>:</span></td>
-                <td>₹0</td>
+                <td>₹{{ userTransactionsPopup?.charges}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">GST Amount<span>:</span></td>
-                <td>₹0</td>
+                <td>₹{{ userTransactionsPopup?.GSTAmount}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Amount<span>:</span></td>
-                <td>₹14800</td>
+                <td>₹{{ userTransactionsPopup?.amount}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Transaction Type<span>:</span></td>
-                <td>Payout</td>
+                <td>
+                  <span *ngIf="userTransactionsPopup?.transactionType == 1">Recharge</span>
+                  <span *ngIf="userTransactionsPopup?.transactionType == 2">Payout</span>
+                  <span *ngIf="userTransactionsPopup?.transactionType == 3">Wallet Debit</span>
+                  <span *ngIf="userTransactionsPopup?.transactionType == 4">Wallet Credit</span>
+                </td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Date<span>:</span></td>
-                <td>16 Feb 2022 09:44 PM</td><!--{{ item?.createdAt | date:'MMM d y h:mm a' }}-->
+                <td>{{ userTransactionsPopup?.transactionDateTime | date:'MMM d y h:mm a' }}</td><!--{{ item?.createdAt | date:'MMM d y h:mm a' }}-->
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Transactions Status<span>:</span></td>
-                <td class="padding-3px"><span class="process-bg">Processed</span></td>
+                <td class="padding-3px"><span class="process-bg">Processed</span>
+                  <!-- <span class="process-bg" *ngIf="userTransactionsPopup?.transactionStatus == 1">Recharge</span>
+                  <span class="process-bg" *ngIf="userTransactionsPopup?.transactionStatus == 2">Payout</span>
+                  <span class="process-bg" *ngIf="userTransactionsPopup?.transactionStatus == 3">Wallet Debit</span>
+                  <span class="process-bg" *ngIf="userTransactionsPopup?.transactionStatus == 4">Wallet Credit</span> -->
+                </td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Notes<span>:</span></td>
-                <td>pay</td>
+                <td>{{ userTransactionsPopup?.notes}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Razorpay TransactionId<span>:</span></td>
-                <td>pout_lwk6ajskNPLS6f</td>
+                <td>{{ userTransactionsPopup?.razorpay_TransactionId}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">INVOICE<span>:</span></td>
                 <td class="padding-6px">
-                  <a href="/" target="_blank" class="btn btn-green">Invoice_PAYVIN16504785721061.pdf</a>
+                  <a [href]="userTransactionsPopup?.InvoiceFile" target="_blank" class="btn btn-green">{{ userTransactionsPopup?.InvoiceFile}}</a>
                 </td>
               </tr>
             </tbody>

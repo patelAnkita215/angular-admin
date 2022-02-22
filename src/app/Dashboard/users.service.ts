@@ -52,6 +52,9 @@ export class UsersService {
     return this.http.post(`${environment.url}/admin/${userid}/wallet-transactions?Offset=0`,data)
   }
 
+  getTransactionsPopupByID(ID: number) {
+    return this.http.get(`${environment.url}/admin/wallet-transactions/${ID}`)
+  }
   getUserByIdSetting(ID: number) {
     return this.http.get(`${environment.url}/admin/users?userId=${ID}`)
   }

@@ -23,6 +23,7 @@ export class UserDetailsComponent implements OnInit {
   userSetting: any;
   showSection = "USER";
   settingUserForm: any;
+  userTransactionsPopup: any;
 
   show: boolean = false;
   constructor(
@@ -89,7 +90,7 @@ export class UserDetailsComponent implements OnInit {
       (resp: any) => {
         this.spinner.hide();
 
-        console.log(resp);
+        console.log("wallet transction",resp);
         if (resp.Status == 1) {
           this.userTransactions = resp.WalletTransactions;
 
@@ -160,8 +161,6 @@ export class UserDetailsComponent implements OnInit {
 
     })
   }
-
-
 
   deleteUser() {
     Swal.fire({
@@ -236,7 +235,6 @@ export class UserDetailsComponent implements OnInit {
   }
 
   settingUser() {
-    // this.settingUserForm.value.PayoutBlocked = parseInt(this.settingUserForm.value.PayoutBlocked)
     const setting = this.settingUserForm.value;
     console.log('this is', setting);
     this.userService.updateUserByIdSetting(this.userId, setting).subscribe((resp: any) => {
@@ -255,29 +253,32 @@ export class UserDetailsComponent implements OnInit {
   }
 
   // transaction detail popup
-  showTransactionModal(){
+  showTransactionModal(event:any,data:any){
+    console.log("event dataa",data)
     this.show = !this.show;
-    
-    // this.userService.getWalletTransactionsByUserId(this.userId).subscribe(
-    //   (resp: any) => {
-    //     this.spinner.hide();
 
-    //     console.log(resp);
-    //     if (resp.Status == 1) {
-    //       this.userTransactions = resp.WalletTransactions;
+    this.userService.getTransactionsPopupByID(data.wallet_transactionId).subscribe(
+      (resp: any) => {
+        this.spinner.hide();
 
-    //     } else {
-    //       this.toastrService.error(resp.Message);
-    //     }
+        console.log(resp);
+        if (resp.Status == 1) {
+          this.userTransactionsPopup = resp.walletTransaction;
 
-    //   }, (error: any) => {
-    //     this.spinner.hide();
-    //     console.log(error);
+        } else {
+          this.toastrService.error(resp.Message);
+        }
 
-    //     this.toastrService.error(error.message);
+      }, (error: any) => {
+        this.spinner.hide();
+        console.log(error);
 
-    //   })
-    
+        this.toastrService.error(error.message);
+
+      })
+  }
+  close(){
+    this.show = !this.show;
   }
 
 }
