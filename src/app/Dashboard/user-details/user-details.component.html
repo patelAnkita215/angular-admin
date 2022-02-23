@@ -348,8 +348,8 @@
                 <input
                   type="radio"
                   id="percentage"
-                  formControlName="payoutChargePercentage"
-                  [value]="1"
+                  formControlName="payoutChargeType"
+                  [value]="0"
                 />
                 <label for="percentage" class="radio-label">Percentage</label>
               </li>
@@ -357,7 +357,14 @@
                 <input
                   type="text"
                   class="form-control text-center"
+                  *ngIf="settingUserForm.value.payoutChargeType == 1"
                   formControlName="payoutChargeAmount"
+                />
+                <input
+                  type="text"
+                  class="form-control text-center"
+                  *ngIf="settingUserForm.value.payoutChargeType == 0"
+                  formControlName="payoutChargePercentage"
                 />
               </li>
             </ul>
@@ -414,7 +421,7 @@ aria-hidden="true">
             <tbody>
               <tr>
                 <td class="d-flex justify-content-between">Name<span>:</span></td>
-                <td>{{ userDetails?.firstName }}</td>
+                <td>{{ userTransactionsPopup?.name}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Mobile Number<span>:</span></td>
@@ -422,11 +429,11 @@ aria-hidden="true">
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Bank Account Number<span>:</span></td>
-                <td>1234567890</td>
+                <td>{{ userTransactionsPopup?.bankAccountNumber}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Bank IFSC Code<span>:</span></td>
-                <td>ICIC0000244</td>
+                <td>{{ userTransactionsPopup?.bankIFSCCode}}</td>
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">Order Id<span>:</span></td>
@@ -485,7 +492,7 @@ aria-hidden="true">
               <tr>
                 <td class="d-flex justify-content-between">INVOICE<span>:</span></td>
                 <td class="padding-6px">
-                  <a [href]="userTransactionsPopup?.InvoiceFile" target="_blank" class="btn btn-green">{{ userTransactionsPopup?.InvoiceFile}}</a>
+                  <button (click)="open()" class="btn btn-green">{{ userTransactionsPopup?.InvoiceFile}}</button>
                 </td>
               </tr>
             </tbody>

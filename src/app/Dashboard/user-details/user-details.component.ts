@@ -280,5 +280,7 @@ export class UserDetailsComponent implements OnInit {
   close(){
     this.show = !this.show;
   }
-
+  open() {
+    window.open('userTransactionsPopup?.InvoiceFile', '_blank')
+  }
 }

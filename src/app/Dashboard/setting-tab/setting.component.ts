@@ -69,7 +69,7 @@ export class SettingComponent implements OnInit {
   getSettingsDetail() {
     this.adminService.getSettingsDetails().subscribe(
       (resp: any) => {
-        this.SettingDetails = resp.SettingDetails;
+        this.SettingDetails = resp.Settings;
         this.form.patchValue({
           rechargeLock: this.SettingDetails.rechargeLock,
           payoutLock: this.SettingDetails.payoutLock,
@@ -87,13 +87,15 @@ export class SettingComponent implements OnInit {
     this.form.value.rechargeLock = parseInt(this.form.value.rechargeLock)
     this.form.value.payoutLock = parseInt(this.form.value.payoutLock)
     this.form.value.completeSystemLock = parseInt(this.form.value.completeSystemLock)
-    console.log(this.form.value);
+
     this.spinner.show();
     this.adminService.updateSettingsDetails(this.form.value).subscribe(
       (resp: any) => {
         console.log(resp);
-        this.toastrService.success(resp.Message);
+        this.toastrService.success('Setting Details Updated');
         window.location.reload();
+        console.log(this.form.value);
+
       },
       (error: any) => {
         this.spinner.hide();
