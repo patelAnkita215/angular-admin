@@ -25,7 +25,7 @@ export class UserDetailsComponent implements OnInit {
   settingUserForm: any;
   userTransactionsPopup: any;
 
-  show: boolean = false;
+  showpopup: boolean = false;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -255,7 +255,7 @@ export class UserDetailsComponent implements OnInit {
   // transaction detail popup
   showTransactionModal(event:any,data:any){
     console.log("event dataa",data)
-    this.show = !this.show;
+    this.showpopup = !this.showpopup;
 
     this.userService.getTransactionsPopupByID(data.wallet_transactionId).subscribe(
       (resp: any) => {
@@ -278,7 +278,7 @@ export class UserDetailsComponent implements OnInit {
       })
   }
   close(){
-    this.show = !this.show;
+    this.showpopup = !this.showpopup;
   }
   open() {
     window.open('userTransactionsPopup?.InvoiceFile', '_blank')

@@ -15,7 +15,7 @@ export class TransactionHistoryComponent implements OnInit {
   startDate: any;
   endDate: any;
 
-  show: boolean = false;
+  showpopup: boolean = false;
   userTransactionsPopup: any;
   constructor(
     private titleService: Title,
@@ -78,7 +78,7 @@ export class TransactionHistoryComponent implements OnInit {
   // transaction detail popup
   showTransactionModal(event:any,data:any){
     console.log("event dataa",data)
-    this.show = !this.show;
+    this.showpopup = !this.showpopup;
 
     this.userService.getTransactionsPopupByID(data.wallet_transactionId).subscribe(
       (resp: any) => {
@@ -101,7 +101,7 @@ export class TransactionHistoryComponent implements OnInit {
       })
   }
   close(){
-    this.show = !this.show;
+    this.showpopup = !this.showpopup;
   }
   open() {
     window.open('userTransactionsPopup?.InvoiceFile', '_blank')
