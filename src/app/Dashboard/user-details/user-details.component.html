@@ -19,11 +19,18 @@
       Transactions
     </button>
     <button
+      (click)="showSection = 'REFFRALUSER'"
+      [ngClass]="{ 'active-sec': showSection == 'REFFRALUSER' }"
+    >
+    Reffral User
+    </button>
+    <button
       (click)="showSection = 'SETTINGS'"
       [ngClass]="{ 'active-sec': showSection == 'SETTINGS' }"
     >
       Settings
     </button>
+    
 
     <!-- <button (click)="deleteUser()" class="btn">
       <img src="assets/delete.svg">
@@ -280,6 +287,11 @@
       </div>
     </div>
   </div>
+  <div class="w-card" *ngIf="showSection == 'REFFRALUSER'">
+    <div>
+      
+    </div>
+  </div>
   <div class="w-card" *ngIf="showSection == 'SETTINGS'">
     <div>
       <form (ngSubmit)="settingUser()" [formGroup]="settingUserForm" novalidate>
@@ -362,10 +374,11 @@
                 />
                 <input
                   type="text"
-                  class="form-control text-center"
+                  class="form-control text-center percentage"
                   *ngIf="settingUserForm.value.payoutChargeType == 0"
                   formControlName="payoutChargePercentage"
                 />
+                <!-- <span *ngIf="settingUserForm.value.payoutChargeType == 0" class="percentage-sign">%</span> -->
               </li>
             </ul>
           </div>

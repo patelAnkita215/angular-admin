@@ -130,10 +130,13 @@
 
 .setting-btn {
   margin-bottom: 15px;
+  
   .settings-width {
     width: 150px;
 
     .form-control {border-color: #6865f0;font-weight: bold;}
+    .percentage {position: relative;}
+    // .percentage-sign {position: absolute;left: auto;right: 0;font-weight: bold;}
   }
   .setting-label {color: #000;font-size: 16px;font-weight: 700;margin-bottom: 10px;}
 
@@ -202,6 +205,7 @@
     margin-top: 30px;
   
     .btn-setting {background: #6865F0;color: #fff;padding: 4px 20px;border: 0;}
+
   }
 // transaction popup
   .transaction-modal {

@@ -21,12 +21,14 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { UserRequestsComponent } from './user-requests/user-requests.component';
 import { BusinessUsersComponent } from './business-users/business-users.component';
 import { SettingComponent } from './setting-tab/setting.component';
+import { DashboardListComponent } from './dashboard-list/dashboard-list.component';
 
 const routes: Routes = [
     {
         path: '', component: DashboardComponent,
         children: [
 
+            { path: 'dashboard-list', component: DashboardListComponent },
             { path: 'users', component: UsersComponent },
             { path: 'users/:id', component: UserDetailsComponent },
             { path: 'business-users', component: BusinessUsersComponent },
@@ -49,6 +51,7 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         DashboardComponent,
+        DashboardListComponent,
         UsersComponent,
         ManageAstrologersComponent,
         TransactionHistoryComponent,

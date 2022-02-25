@@ -1,24 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import {
-  Router,
-  Event,
-  NavigationStart,
-  NavigationEnd,
-  NavigationError,
-  ActivatedRoute,
-} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
-
-import { UsersService } from '../users.service';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -27,11 +12,7 @@ import { AdminService } from '../admin.service';
   styleUrls: ['./setting.component.scss'],
 })
 export class SettingComponent implements OnInit {
-  // e: any;
-  // users: any;
-  // p: number = 1;
-  // itemsPerPage: number = 25;
-  // totalUsers: number = 0;
+  
   submitted = false;
   form: any;
   // form: FormGroup;
@@ -39,7 +20,6 @@ export class SettingComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private usersService: UsersService,
     private spinner: NgxSpinnerService,
     private toastrService: ToastrService,
     private titleService: Title,

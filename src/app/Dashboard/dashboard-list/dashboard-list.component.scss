@@ -1,0 +1,25 @@
+.main {
+    width: 90%;
+    margin: 20px auto;
+    font-family: 'Roboto' !important;
+  
+    .users-p {
+      color: rgba(26, 23, 23, 1);
+      font-size: 25px;
+      line-height: 30px;
+      font-family: 'Roboto';
+    }
+  
+    .dashboard-content {
+
+      .dashboard-card{
+        border-radius: 15px;
+        background: #6865f052;
+        padding: 15px;
+        color: #333;
+        margin: 5px;
+        height: 97%;
+      }
+    }
+  }
+  

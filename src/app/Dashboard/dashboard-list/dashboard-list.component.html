@@ -1,0 +1,84 @@
+<div class="main">
+  <div>
+    <p class="users-p">Dashboard</p>
+    <div class="dashboard-content">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="dashboard-card">
+            <h5>Current Month Loaded</h5>
+            <h3>
+              <!-- {{
+                userDashboard?.currentMonth_amountLoaded | currency: "INR":true
+              }} -->
+            </h3>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="dashboard-card">
+            <h5>Current Month Payout</h5>
+            <h3>
+              <!-- {{
+                userDashboard?.currentMonth_amountPayout | currency: "INR":true
+              }} -->
+            </h3>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="dashboard-card">
+            <h5>Current Month Amount Total</h5>
+            <h3>
+              <!-- {{ userDashboard?.currentMonth_amountTotal | currency: "INR":true }} -->
+            </h3>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="dashboard-card">
+            <h5>Previous Month Amount Loaded</h5>
+            <h3>
+              <!-- {{
+                userDashboard?.previousMonth_amountLoaded | currency: "INR":true
+              }} -->
+            </h3>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="dashboard-card">
+            <h5>Previous Month Amount Payout</h5>
+            <h3>
+              <!-- {{
+                userDashboard?.previousMonth_amountPayout | currency: "INR":true
+              }} -->
+            </h3>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="dashboard-card">
+            <h5>Previous Month Amount Total</h5>
+            <h3>
+              <!-- {{
+                userDashboard?.previousMonth_amountTotal | currency: "INR":true
+              }} -->
+            </h3>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="dashboard-card">
+            <h5>Current Month Payouts</h5>
+            <h3>
+              <!-- {{ userDashboard?.currentMonth_payoutCount }} -->
+            </h3>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="dashboard-card">
+            <h5>Previous Month Payouts</h5>
+            <h3>
+              <!-- {{ userDashboard?.previousMonth_payoutCount }} -->
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>
