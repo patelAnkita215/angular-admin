@@ -63,4 +63,8 @@ export class UsersService {
     return this.http.put(`${environment.url}/admin/${userid}/update-userdetails`, setting)
   }
 
+  getReferredUser(userid: number,offset: any) {
+    return this.http.get(`${environment.url}/admin/${userid}/referred-users?offset=${offset}`)
+  }
+
 }

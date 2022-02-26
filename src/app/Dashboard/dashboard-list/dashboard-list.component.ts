@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
-import { UsersService } from '../users.service';
+import { AdminService } from '../admin.service';
 
 
 @Component({
@@ -14,52 +14,47 @@ import { UsersService } from '../users.service';
 })
 export class DashboardListComponent implements OnInit {
 
-  // userDashboard: any;
-  // userId: number;
-
+  adminDashboard: any;
 
   constructor(
     private router: Router,
-    private userService: UsersService,
+    private adminService: AdminService,
     private spinner: NgxSpinnerService,
     private toastrService: ToastrService,
     private titleService: Title,
     private route: ActivatedRoute,
   ) {
     this.titleService.setTitle('Dashboard | Payville - Admin');
-    // this.userId = this.route.snapshot.params.id;
-    // console.log(this.userId);
-
   }
 
   ngOnInit(): void {
 
-    // this.getUserDashboard();
+    this.getAdminDashboard();
    
   }
 
-  // getUserDashboard() {
-  //   this.spinner.show();
-  //   this.userService.getDashboardByUserId(this.userId).subscribe(
-  //     (resp: any) => {
-  //       this.spinner.hide();
+  getAdminDashboard() {
+    this.spinner.show();
+    this.adminService.getDashboardAdmin().subscribe(
+      (resp: any) => {
+        this.spinner.hide();
 
-  //       console.log(resp);
-  //       if (resp.Status == 1) {
-  //         this.userDashboard = resp.Dashboard;
+        console.log('dashboard',resp);
+        if (resp.Status == 1) {
+          this.adminDashboard = resp.Dashboard;
 
-  //       } else {
-  //         this.toastrService.error(resp.Message);
-  //       }
+        } else {
+          this.toastrService.error(resp.Message);
+        }
 
-  //     }, (error: any) => {
-  //       this.spinner.hide();
-  //       console.log(error);
+      }, (error: any) => {
+        this.spinner.hide();
+        console.log(error);
 
-  //       this.toastrService.error(error.message);
+        this.toastrService.error(error.message);
 
-  //     })
-  // }
+      })
+  }
   
   
 }

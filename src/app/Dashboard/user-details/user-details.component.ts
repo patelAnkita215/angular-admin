@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { UsersService } from '../users.service';
+// import { count } from 'console';
 
 @Component({
   selector: 'app-user-details',
@@ -52,7 +53,7 @@ export class UserDetailsComponent implements OnInit {
       payoutChargePercentage: [''],
       monthlyBusinessCommitment: [''],
       // allowCommission: [''],
-      // userBlock: [''],
+      userBlock: [''],
 
     });
 
@@ -60,6 +61,7 @@ export class UserDetailsComponent implements OnInit {
     this.getUserTransactions();
     this.getUserDashboard();
     this.getUserSetting();
+    // this.getReferredUser();
   }
   getUser() {
     this.spinner.show();
@@ -130,37 +132,6 @@ export class UserDetailsComponent implements OnInit {
       })
   }
 
-  getUserSetting() {
-    this.spinner.show();
-    this.userService.getUserByIdSetting(this.userId).subscribe((resp: any) => {
-        this.spinner.hide();
-        console.log(resp);
-        if (resp.Status == 1) {
-          this.userSetting = resp.UserDetails;
-          this.settingUserForm.patchValue({
-            PayoutBlocked: this.userSetting.isPayoutBlocked,
-            walletCommissionPercentage: this.userSetting.walletCommissionPercentage,
-            payoutChargeType: this.userSetting.payoutChargeType,
-            payoutChargeAmount: this.userSetting.payoutChargeAmount,
-            payoutChargePercentage: this.userSetting.payoutChargePercentage,
-            monthlyBusinessCommitment: this.userSetting.monthlyBusinessCommitment,
-            // allowCommission: this.userSetting.allowCommission,
-            // userBlock: this.userSetting.userBlock,
-            
-              })
-
-        } else {
-          this.toastrService.error(resp.Message);
-        }
-
-      }, (error: any) => {
-        this.spinner.hide();
-        console.log(error);
-
-        this.toastrService.error(error.message);
-
-    })
-  }
 
   deleteUser() {
     Swal.fire({
@@ -233,6 +204,38 @@ export class UserDetailsComponent implements OnInit {
     })
 
   }
+// setting tab
+  getUserSetting() {
+    this.spinner.show();
+    this.userService.getUserByIdSetting(this.userId).subscribe((resp: any) => {
+        this.spinner.hide();
+        console.log(resp);
+        if (resp.Status == 1) {
+          this.userSetting = resp.UserDetails;
+          this.settingUserForm.patchValue({
+            PayoutBlocked: this.userSetting.isPayoutBlocked,
+            walletCommissionPercentage: this.userSetting.walletCommissionPercentage,
+            payoutChargeType: this.userSetting.payoutChargeType,
+            payoutChargeAmount: this.userSetting.payoutChargeAmount,
+            payoutChargePercentage: this.userSetting.payoutChargePercentage,
+            monthlyBusinessCommitment: this.userSetting.monthlyBusinessCommitment,
+            // allowCommission: this.userSetting.allowCommission,
+            userBlock: this.userSetting.isBlocked,
+            
+              })
+
+        } else {
+          this.toastrService.error(resp.Message);
+        }
+
+      }, (error: any) => {
+        this.spinner.hide();
+        console.log(error);
+
+        this.toastrService.error(error.message);
+
+    })
+  }
 
   settingUser() {
     const setting = this.settingUserForm.value;
@@ -283,4 +286,25 @@ export class UserDetailsComponent implements OnInit {
   open() {
     window.open('userTransactionsPopup?.InvoiceFile', '_blank')
   }
+
+  // referred user tab
+  // getReferredUser() {
+  //   this.spinner.show();
+  //   const count:any = {
+  //     offset: 0
+  //   }
+  //   this.userService.getReferredUser(this.userId,count).subscribe(
+  //     (resp: any) => {
+  //       this.spinner.hide();
+
+  //       console.log(resp);
+
+  //     }, (error: any) => {
+  //       this.spinner.hide();
+  //       console.log(error);
+
+  //       this.toastrService.error(error.message);
+
+  //     })
+  // }
 }

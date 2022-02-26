@@ -30,4 +30,9 @@ export class AdminService {
     return this.http.put(`${environment.url}/admin/settings`, settings)
   }
 
+  getDashboardAdmin() {
+    return this.http.get(`${environment.url}/admin/dashboard`)
+  }
+
+
 }
