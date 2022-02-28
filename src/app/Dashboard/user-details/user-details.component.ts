@@ -25,6 +25,8 @@ export class UserDetailsComponent implements OnInit {
   showSection = "USER";
   settingUserForm: any;
   userTransactionsPopup: any;
+  referralUser: any;
+  getOffset: number = 0;
 
   showpopup: boolean = false;
   constructor(
@@ -61,7 +63,7 @@ export class UserDetailsComponent implements OnInit {
     this.getUserTransactions();
     this.getUserDashboard();
     this.getUserSetting();
-    // this.getReferredUser();
+    this.getReferredUser();
   }
   getUser() {
     this.spinner.show();
@@ -265,12 +267,7 @@ export class UserDetailsComponent implements OnInit {
         this.spinner.hide();
 
         console.log(resp);
-        if (resp.Status == 1) {
           this.userTransactionsPopup = resp.walletTransaction;
-
-        } else {
-          this.toastrService.error(resp.Message);
-        }
 
       }, (error: any) => {
         this.spinner.hide();
@@ -288,23 +285,24 @@ export class UserDetailsComponent implements OnInit {
   }
 
   // referred user tab
-  // getReferredUser() {
-  //   this.spinner.show();
-  //   const count:any = {
-  //     offset: 0
-  //   }
-  //   this.userService.getReferredUser(this.userId,count).subscribe(
-  //     (resp: any) => {
-  //       this.spinner.hide();
+  getReferredUser() {
+    this.spinner.show();
+    const count = this.getOffset;
+    this.userService.getReferredUser(this.userId,count).subscribe(
+      (resp: any) => {
+        this.spinner.hide();
 
-  //       console.log(resp);
+        console.log(resp);
+        if(resp.Status==1) {
+          this.referralUser = resp.referralUser;
+        }
 
-  //     }, (error: any) => {
-  //       this.spinner.hide();
-  //       console.log(error);
+      }, (error: any) => {
+        this.spinner.hide();
+        console.log(error);
 
-  //       this.toastrService.error(error.message);
+        this.toastrService.error(error.message);
 
-  //     })
-  // }
+      })
+  }
 }

@@ -288,8 +288,27 @@
     </div>
   </div>
   <div class="w-card" *ngIf="showSection == 'REFERRALUSER'">
-    <div>
-      
+    <div class="referral-table">
+      <h3>Referral Users</h3>
+      <table class="table table-hover">
+        <thead>
+          <tr class="tr-head">
+            <th>Name</th>
+            <th>Company Name</th>
+            <th>Referral Code</th>
+            <th>Commission Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Swathi ch</td>
+            <td></td>
+            <td>xyz</td>
+            <td>1.45%</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <h5>No records found</h5> -->
     </div>
   </div>
   <div class="w-card" *ngIf="showSection == 'SETTINGS'">
