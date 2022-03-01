@@ -54,7 +54,5 @@ export class DashboardListComponent implements OnInit {
         this.toastrService.error(error.message);
 
       })
-  }
-  
-  
+  }  
 }

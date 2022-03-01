@@ -300,15 +300,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Swathi ch</td>
+          <tr *ngFor="let item of referralUser">
+            <td>{{ item?.firstName }}</td>
             <td></td>
-            <td>xyz</td>
-            <td>1.45%</td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
-      <!-- <h5>No records found</h5> -->
+      <h5 *ngIf="!referralUser?.length">No records found</h5>
     </div>
   </div>
   <div class="w-card" *ngIf="showSection == 'SETTINGS'">
@@ -332,23 +332,11 @@
             <div class="setting-label">Block Payouts</div>
             <ul>
               <li>
-                <input
-                  type="radio"
-                  id="payoutBlock-yes"
-                  formControlName="PayoutBlocked"
-                  name="PayoutBlocked"
-                  [value]="1"
-                />
+                <input type="radio" id="payoutBlock-yes" formControlName="PayoutBlocked" name="PayoutBlocked" [value]="1" />
                 <label for="payoutBlock-yes" class="radio-label">Yes</label>
               </li>
               <li>
-                <input
-                  type="radio"
-                  id="payoutBlock-no"
-                  formControlName="PayoutBlocked"
-                  name="PayoutBlocked"
-                  [value]="0"
-                />
+                <input type="radio" id="payoutBlock-no" formControlName="PayoutBlocked" name="PayoutBlocked" [value]="0" />
                 <label for="payoutBlock-no" class="radio-label">No</label>
               </li>
             </ul>
@@ -356,46 +344,23 @@
           <div class="setting-btn">
             <div class="setting-label">Wallet commision (%)</div>
             <div class="settings-width">
-              <input
-                type="text"
-                class="form-control text-center"
-                formControlName="walletCommissionPercentage"
-              />
+              <input type="text" class="form-control text-center" formControlName="walletCommissionPercentage"/>
             </div>
           </div>
           <div class="setting-btn">
             <div class="setting-label">Payout Charge Type</div>
             <ul>
               <li>
-                <input
-                  type="radio"
-                  id="fixed"
-                  formControlName="payoutChargeType"
-                  [value]="1"
-                />
+                <input type="radio" id="fixed" formControlName="payoutChargeType" [value]="1" />
                 <label for="fixed" class="radio-label">Fixed</label>
               </li>
               <li>
-                <input
-                  type="radio"
-                  id="percentage"
-                  formControlName="payoutChargeType"
-                  [value]="0"
-                />
+                <input type="radio" id="percentage" formControlName="payoutChargeType" [value]="0" />
                 <label for="percentage" class="radio-label">Percentage</label>
               </li>
               <li class="settings-width">
-                <input
-                  type="text"
-                  class="form-control text-center"
-                  *ngIf="settingUserForm.value.payoutChargeType == 1"
-                  formControlName="payoutChargeAmount"
-                />
-                <input
-                  type="text"
-                  class="form-control text-center percentage"
-                  *ngIf="settingUserForm.value.payoutChargeType == 0"
-                  formControlName="payoutChargePercentage"
+                <input type="text" class="form-control text-center" *ngIf="settingUserForm.value.payoutChargeType == 1" formControlName="payoutChargeAmount" />
+                <input type="text" class="form-control text-center percentage" *ngIf="settingUserForm.value.payoutChargeType == 0" formControlName="payoutChargePercentage"
                 />
                 <!-- <span *ngIf="settingUserForm.value.payoutChargeType == 0" class="percentage-sign">%</span> -->
               </li>
@@ -405,19 +370,11 @@
             <div class="setting-label">Allow Commission</div>
             <ul>
               <li>
-                <input
-                  type="radio"
-                  id="allowCommission-yes"
-                  name="allowCommission"
-                />
+                <input type="radio" id="allowCommission-yes" name="allowCommission" [value]="1" />
                 <label for="allowCommission-yes" class="radio-label">Yes</label>
               </li>
               <li>
-                <input
-                  type="radio"
-                  id="allowCommission-no"
-                  name="allowCommission"
-                />
+                <input type="radio" id="allowCommission-no" name="allowCommission" [value]="0" />
                 <label for="allowCommission-no" class="radio-label">No</label>
               </li>
             </ul>
@@ -425,11 +382,7 @@
           <div class="setting-btn">
             <div class="setting-label">Monthly Commitment (Rs)</div>
             <div class="settings-width">
-              <input
-                type="text"
-                class="form-control text-center"
-                formControlName="monthlyBusinessCommitment"
-              />
+              <input type="text" class="form-control text-center" formControlName="monthlyBusinessCommitment" />
             </div>
           </div>
         </div>

@@ -267,14 +267,16 @@ export class UserDetailsComponent implements OnInit {
         this.spinner.hide();
 
         console.log(resp);
+        if(resp.Status == 1){
           this.userTransactionsPopup = resp.walletTransaction;
+        } else {
+          this.toastrService.error(resp.Message);
+        }
 
       }, (error: any) => {
         this.spinner.hide();
         console.log(error);
-
         this.toastrService.error(error.message);
-
       })
   }
   close(){
@@ -293,16 +295,16 @@ export class UserDetailsComponent implements OnInit {
         this.spinner.hide();
 
         console.log(resp);
-        if(resp.Status==1) {
-          this.referralUser = resp.referralUser;
+        if(resp.Status == 1) {
+          this.referralUser = resp.ReferredUsers;
+        } else {
+          this.toastrService.error(resp.Message);
         }
 
       }, (error: any) => {
         this.spinner.hide();
         console.log(error);
-
         this.toastrService.error(error.message);
-
       })
   }
 }

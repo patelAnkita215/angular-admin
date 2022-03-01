@@ -5,76 +5,32 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="dashboard-card">
-            <h5>Current Month Loaded</h5>
-            <h3>
-              <!-- {{
-                userDashboard?.currentMonth_amountLoaded | currency: "INR":true
-              }} -->
-            </h3>
+            <h5>Total Wallet Load</h5>
+            <h3> {{ adminDashboard?.Inflow | currency: "INR":true }} </h3>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="dashboard-card">
-            <h5>Current Month Payout</h5>
-            <h3>
-              <!-- {{
-                userDashboard?.currentMonth_amountPayout | currency: "INR":true
-              }} -->
-            </h3>
+            <h5>Total Payouts</h5>
+            <h3> {{ adminDashboard?.Outflow | currency: "INR":true }} </h3>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="dashboard-card">
-            <h5>Current Month Amount Total</h5>
-            <h3>
-              <!-- {{ userDashboard?.currentMonth_amountTotal | currency: "INR":true }} -->
-            </h3>
+            <h5>Total Wallet Amount</h5>
+            <h3> {{ adminDashboard?.TotalWalletAmount | currency: "INR":true }} </h3>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="dashboard-card">
-            <h5>Previous Month Amount Loaded</h5>
-            <h3>
-              <!-- {{
-                userDashboard?.previousMonth_amountLoaded | currency: "INR":true
-              }} -->
-            </h3>
+            <h5>Total Business Users</h5>
+            <h3> {{ adminDashboard?.BusinessUsersCount }} </h3>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="dashboard-card">
-            <h5>Previous Month Amount Payout</h5>
-            <h3>
-              <!-- {{
-                userDashboard?.previousMonth_amountPayout | currency: "INR":true
-              }} -->
-            </h3>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="dashboard-card">
-            <h5>Previous Month Amount Total</h5>
-            <h3>
-              <!-- {{
-                userDashboard?.previousMonth_amountTotal | currency: "INR":true
-              }} -->
-            </h3>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="dashboard-card">
-            <h5>Current Month Payouts</h5>
-            <h3>
-              <!-- {{ userDashboard?.currentMonth_payoutCount }} -->
-            </h3>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="dashboard-card">
-            <h5>Previous Month Payouts</h5>
-            <h3>
-              <!-- {{ userDashboard?.previousMonth_payoutCount }} -->
-            </h3>
+            <h5>Total Retail Users</h5>
+            <h3> {{ adminDashboard?.UsersCount }} </h3>
           </div>
         </div>
       </div>

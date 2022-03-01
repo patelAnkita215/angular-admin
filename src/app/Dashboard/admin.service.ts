@@ -31,7 +31,7 @@ export class AdminService {
   }
 
   getDashboardAdmin() {
-    return this.http.get(`${environment.url}/admin/dashboard`)
+    return this.http.get(`${environment.url}/dashboard/admin`)
   }
 
 
