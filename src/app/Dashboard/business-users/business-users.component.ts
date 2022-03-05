@@ -80,78 +80,78 @@ export class BusinessUsersComponent implements OnInit {
     this.router.navigate(['dashboard/users/' + id]);
   }
 
-  async updateCharges(evalue: any, user: any) {
-    console.log(user);
-    if (evalue.target.value == 1) {
+  // async updateCharges(evalue: any, user: any) {
+  //   console.log(user);
+  //   if (evalue.target.value == 1) {
 
-      const ipWalletCommissionPercentage = await Swal.fire({
-        title: 'Update Wallet Commission in %',
-        input: 'text',
-        inputPlaceholder: 'Enter Wallet Commission in %',
-        inputValue: user?.walletCommissionPercentage,
-        confirmButtonText: 'Update',
-        showCloseButton: true,
+  //     const ipWalletCommissionPercentage = await Swal.fire({
+  //       title: 'Update Wallet Commission in %',
+  //       input: 'text',
+  //       inputPlaceholder: 'Enter Wallet Commission in %',
+  //       inputValue: user?.walletCommissionPercentage,
+  //       confirmButtonText: 'Update',
+  //       showCloseButton: true,
 
-      }).then((confirmed: any) => {
+  //     }).then((confirmed: any) => {
 
-        if (confirmed.isDismissed) {
-          window.location.reload();
-        }
-        if (confirmed.isConfirmed) {
-          if (isNaN(confirmed.value)) {
-            alert('Invalid value');
-            this.updateCharges(evalue, user);
-            return;
-          }
-          if (confirmed.value > 100) {
-            alert('Invalid value');
-            this.updateCharges(evalue, user);
-            return;
-          }
-          this.updateUserApi(user, 'WalletCommission', confirmed.value)
-        }
-        console.log(confirmed);
+  //       if (confirmed.isDismissed) {
+  //         window.location.reload();
+  //       }
+  //       if (confirmed.isConfirmed) {
+  //         if (isNaN(confirmed.value)) {
+  //           alert('Invalid value');
+  //           this.updateCharges(evalue, user);
+  //           return;
+  //         }
+  //         if (confirmed.value > 100) {
+  //           alert('Invalid value');
+  //           this.updateCharges(evalue, user);
+  //           return;
+  //         }
+  //         this.updateUserApi(user, 'WalletCommission', confirmed.value)
+  //       }
+  //       console.log(confirmed);
 
-      })
-    }
-    if (evalue.target.value == 2) {
+  //     })
+  //   }
+  //   if (evalue.target.value == 2) {
 
-      const ipPayoutChargePercentage = await Swal.fire({
-        title: 'Update Payout Charge in %',
-        input: 'text',
-        inputPlaceholder: 'Enter Payout Charge in %',
-        inputValue: user?.payoutChargePercentage,
-        confirmButtonText: 'Update',
-        showCloseButton: true
-      }).then((confirmed: any) => {
+  //     const ipPayoutChargePercentage = await Swal.fire({
+  //       title: 'Update Payout Charge in %',
+  //       input: 'text',
+  //       inputPlaceholder: 'Enter Payout Charge in %',
+  //       inputValue: user?.payoutChargePercentage,
+  //       confirmButtonText: 'Update',
+  //       showCloseButton: true
+  //     }).then((confirmed: any) => {
 
-        console.log(confirmed);
+  //       console.log(confirmed);
 
-        if (confirmed.isDismissed) {
-          window.location.reload();
-        }
-        if (confirmed.isConfirmed) {
-          if (isNaN(confirmed.value)) {
-            alert('Invalid value');
-            this.updateCharges(evalue, user);
-            return
-          }
-          if (confirmed?.value > 100) {
-            alert('Invalid value');
-            this.updateCharges(evalue, user);
-            return
-          }
-          this.updateUserApi(user, 'PayoutCharge', confirmed.value)
-        }
-        console.log(confirmed);
+  //       if (confirmed.isDismissed) {
+  //         window.location.reload();
+  //       }
+  //       if (confirmed.isConfirmed) {
+  //         if (isNaN(confirmed.value)) {
+  //           alert('Invalid value');
+  //           this.updateCharges(evalue, user);
+  //           return
+  //         }
+  //         if (confirmed?.value > 100) {
+  //           alert('Invalid value');
+  //           this.updateCharges(evalue, user);
+  //           return
+  //         }
+  //         this.updateUserApi(user, 'PayoutCharge', confirmed.value)
+  //       }
+  //       console.log(confirmed);
 
-      })
-    }
+  //     })
+  //   }
 
     // if (email) {
     //   Swal.fire(`Entered email: ${email}`)
     // }
-  }
+  // }
 
   updateUserApi(user: any, whatToUpdate: any, val: any) {
 

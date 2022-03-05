@@ -56,6 +56,8 @@ export class UserDetailsComponent implements OnInit {
       monthlyBusinessCommitment: [''],
       // allowCommission: [''],
       userBlock: [''],
+      holdAmount: [''],
+      isDepositBlocked: [''],
 
     });
 
@@ -215,7 +217,7 @@ export class UserDetailsComponent implements OnInit {
         if (resp.Status == 1) {
           this.userSetting = resp.UserDetails;
           this.settingUserForm.patchValue({
-            PayoutBlocked: this.userSetting.isPayoutBlocked,
+            // PayoutBlocked: this.userSetting.isPayoutBlocked,
             walletCommissionPercentage: this.userSetting.walletCommissionPercentage,
             payoutChargeType: this.userSetting.payoutChargeType,
             payoutChargeAmount: this.userSetting.payoutChargeAmount,
@@ -223,6 +225,8 @@ export class UserDetailsComponent implements OnInit {
             monthlyBusinessCommitment: this.userSetting.monthlyBusinessCommitment,
             // allowCommission: this.userSetting.allowCommission,
             userBlock: this.userSetting.isBlocked,
+            holdAmount: this.userSetting.holdAmount,
+            isDepositBlocked: this.userSetting.isDepositBlocked,
             
               })
 

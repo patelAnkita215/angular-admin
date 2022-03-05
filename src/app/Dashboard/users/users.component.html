@@ -12,7 +12,7 @@
             <th scope="col"> Wallet Commission Percentage </th>
             <!-- <th scope="col"> Status </th> -->
             <th scope="col"> Wallet Balance </th>
-            <th scope="col"> Action </th>
+            <!-- <th scope="col"> Action </th> -->
           </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
             <td (click)="navTo(user.userId)">{{user.createdAt | date}}</td>
             <td (click)="navTo(user.userId)">{{user.walletCommissionPercentage}}%</td>
             <td (click)="navTo(user.userId)">₹{{user.walletAmount | number:'1.0':'en-US' }}</td>
-            <td>
+            <!-- <td>
               <select (change)="updateCharges($event,user)" class="select-action">
                 <option selected disabled>Action</option>
                 <option value="1">Update Wallet Charges</option>
@@ -32,7 +32,7 @@
                 <option value="3">Block Payouts</option>
                 <option value="4">Block User</option>
               </select>
-            </td>
+            </td> -->
             <!-- <td>
               <label class="switch">
                 <input  [(ngModel)]="user.UserStatus"

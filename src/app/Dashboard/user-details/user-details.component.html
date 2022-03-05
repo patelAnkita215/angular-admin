@@ -302,9 +302,9 @@
         <tbody>
           <tr *ngFor="let item of referralUser">
             <td>{{ item?.firstName }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ item?.companyName }}</td>
+            <td>{{ item?.referredByCode }}</td>
+            <td>{{ item?.walletCommissionPercentage }}</td>
           </tr>
         </tbody>
       </table>
@@ -332,12 +332,25 @@
             <div class="setting-label">Block Payouts</div>
             <ul>
               <li>
-                <input type="radio" id="payoutBlock-yes" formControlName="PayoutBlocked" name="PayoutBlocked" [value]="1" />
+                <input type="radio" id="payoutBlock-yes" formControlName="isDepositBlocked" name="isDepositBlocked" [value]="1" />
                 <label for="payoutBlock-yes" class="radio-label">Yes</label>
               </li>
               <li>
-                <input type="radio" id="payoutBlock-no" formControlName="PayoutBlocked" name="PayoutBlocked" [value]="0" />
+                <input type="radio" id="payoutBlock-no" formControlName="isDepositBlocked" name="isDepositBlocked" [value]="0" />
                 <label for="payoutBlock-no" class="radio-label">No</label>
+              </li>
+            </ul>
+          </div>
+          <div class="setting-btn">
+            <div class="setting-label">Block Wallet Load</div>
+            <ul>
+              <li>
+                <input type="radio" id="walletBlock-yes" />
+                <label for="walletBlock-yes" class="radio-label">Yes</label>
+              </li>
+              <li>
+                <input type="radio" id="walletBlock-no" />
+                <label for="walletBlock-no" class="radio-label">No</label>
               </li>
             </ul>
           </div>
@@ -355,14 +368,17 @@
                 <label for="fixed" class="radio-label">Fixed</label>
               </li>
               <li>
-                <input type="radio" id="percentage" formControlName="payoutChargeType" [value]="0" />
+                <input type="radio" id="percentage" formControlName="payoutChargeType" [value]="2" />
                 <label for="percentage" class="radio-label">Percentage</label>
+              </li>
+              <li>
+                <input type="radio" id="none" formControlName="payoutChargeType" [value]="0" />
+                <label for="none" class="radio-label">None</label>
               </li>
               <li class="settings-width">
                 <input type="text" class="form-control text-center" *ngIf="settingUserForm.value.payoutChargeType == 1" formControlName="payoutChargeAmount" />
-                <input type="text" class="form-control text-center percentage" *ngIf="settingUserForm.value.payoutChargeType == 0" formControlName="payoutChargePercentage"
+                <input type="text" class="form-control text-center percentage" *ngIf="settingUserForm.value.payoutChargeType == 2" formControlName="payoutChargePercentage"
                 />
-                <!-- <span *ngIf="settingUserForm.value.payoutChargeType == 0" class="percentage-sign">%</span> -->
               </li>
             </ul>
           </div>
@@ -383,6 +399,12 @@
             <div class="setting-label">Monthly Commitment (Rs)</div>
             <div class="settings-width">
               <input type="text" class="form-control text-center" formControlName="monthlyBusinessCommitment" />
+            </div>
+          </div>
+          <div class="setting-btn">
+            <div class="setting-label">Hold Amount</div>
+            <div class="settings-width">
+              <input type="text" class="form-control text-center" formControlName="holdAmount" />
             </div>
           </div>
         </div>
