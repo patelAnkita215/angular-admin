@@ -75,7 +75,6 @@ export class SettingComponent implements OnInit {
         this.toastrService.success('Setting Details Updated');
         window.location.reload();
         console.log(this.form.value);
-
       },
       (error: any) => {
         this.spinner.hide();

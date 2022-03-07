@@ -103,8 +103,4 @@ export class TransactionHistoryComponent implements OnInit {
   close(){
     this.showpopup = !this.showpopup;
   }
-  open() {
-    window.open('userTransactionsPopup?.InvoiceFile', '_blank')
-  }
-
 }

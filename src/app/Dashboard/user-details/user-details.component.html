@@ -498,8 +498,11 @@ aria-hidden="true">
               </tr>
               <tr>
                 <td class="d-flex justify-content-between">INVOICE<span>:</span></td>
-                <td class="padding-6px">
-                  <button (click)="open()" class="btn btn-green">{{ userTransactionsPopup?.InvoiceFile}}</button>
+                <td class="padding-6px" *ngIf="
+                userTransactionsPopup?.InvoiceFile?.length != 0 &&
+                userTransactionsPopup?.InvoiceFile != 'NA'
+              ">
+                  <a class="btn btn-green" target="_blank" [href]="userTransactionsPopup?.InvoiceFile" > {{ userTransactionsPopup?.InvoiceFile}} </a>
                 </td>
               </tr>
             </tbody>

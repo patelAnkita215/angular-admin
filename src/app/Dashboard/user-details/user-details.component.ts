@@ -286,10 +286,6 @@ export class UserDetailsComponent implements OnInit {
   close(){
     this.showpopup = !this.showpopup;
   }
-  open() {
-    window.open('userTransactionsPopup?.InvoiceFile', '_blank')
-  }
-
   // referred user tab
   getReferredUser() {
     this.spinner.show();

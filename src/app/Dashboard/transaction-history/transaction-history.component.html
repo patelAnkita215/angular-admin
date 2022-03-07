@@ -1,13 +1,12 @@
 <div class="main">
   <div>
     <div class="head-add-div">
-      <p class="users-p">Transactions </p>
+      <p class="users-p">Transactions</p>
     </div>
     <div class="dates-ips">
-
       <input [(ngModel)]="startDate" class="date-ips" type="Date" />
       <input [(ngModel)]="endDate" class="date-ips" type="Date" />
-      <button (click)='filterByDate()' class="go-btn">Go</button>
+      <button (click)="filterByDate()" class="go-btn">Go</button>
     </div>
     <div>
       <table class="table table-hover table-borderless">
@@ -22,35 +21,70 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of transactions | paginate: { itemsPerPage: 10, currentPage: p }">
-
-            <td class="cursor-pointer" (click)="showTransactionModal($event,item)" data-toggle="modal" data-target="#exampleModal">
-              {{item?.createdAt | date}}
+          <tr
+            *ngFor="
+              let item of transactions
+                | paginate: { itemsPerPage: 10, currentPage: p }
+            "
+          >
+            <td
+              class="cursor-pointer"
+              (click)="showTransactionModal($event, item)"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              {{ item?.createdAt | date }}
             </td>
-            <td class="cursor-pointer" (click)="showTransactionModal($event,item)" data-toggle="modal" data-target="#exampleModal">
-              {{item?.wallet_transactionId}}
+            <td
+              class="cursor-pointer"
+              (click)="showTransactionModal($event, item)"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              {{ item?.wallet_transactionId }}
             </td>
-            <td class="cursor-pointer" (click)="showTransactionModal($event,item)" data-toggle="modal" data-target="#exampleModal">
-              <span *ngIf="item?.transactionType ==1">Recharge</span>
-              <span *ngIf="item?.transactionType ==2">Payout</span>
-              <span *ngIf="item?.transactionType ==3">Wallet Debit</span>
-              <span *ngIf="item?.transactionType ==4">Wallet Credit</span>
-
+            <td
+              class="cursor-pointer"
+              (click)="showTransactionModal($event, item)"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              <span *ngIf="item?.transactionType == 1">Recharge</span>
+              <span *ngIf="item?.transactionType == 2">Payout</span>
+              <span *ngIf="item?.transactionType == 3">Wallet Debit</span>
+              <span *ngIf="item?.transactionType == 4">Wallet Credit</span>
             </td>
-            <td class="cursor-pointer" (click)="showTransactionModal($event,item)" data-toggle="modal" data-target="#exampleModal">
+            <td
+              class="cursor-pointer"
+              (click)="showTransactionModal($event, item)"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
               <span
-                *ngIf="item?.transactionType == 1 || item?.transactionType == 3">₹{{item?.amount | number:'1.0':'en-US' }}</span>
+                *ngIf="item?.transactionType == 1 || item?.transactionType == 3"
+                >₹{{ item?.amount | number: "1.0":"en-US" }}</span
+              >
             </td>
-            <td class="cursor-pointer" (click)="showTransactionModal($event,item)" data-toggle="modal" data-target="#exampleModal">
+            <td
+              class="cursor-pointer"
+              (click)="showTransactionModal($event, item)"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
               <span
-                *ngIf="item?.transactionType == 2 || item?.transactionType == 4">₹{{item?.amount | number:'1.0':'en-US' }}</span>
-
+                *ngIf="item?.transactionType == 2 || item?.transactionType == 4"
+                >₹{{ item?.amount | number: "1.0":"en-US" }}</span
+              >
             </td>
-            <td class="cursor-pointer" (click)="showTransactionModal($event,item)" data-toggle="modal" data-target="#exampleModal">
+            <td
+              class="cursor-pointer"
+              (click)="showTransactionModal($event, item)"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
               <span> Completed</span>
             </td>
           </tr>
-
         </tbody>
       </table>
       <div class="pagination-div">
@@ -61,71 +95,123 @@
 </div>
 <ngx-spinner></ngx-spinner>
 <!-- transation modal -->
-<div class="modal transaction-modal" [class.show]="showpopup" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
+<div
+  class="modal transaction-modal"
+  [class.show]="showpopup"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog transaction-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <button type="button" class="btn-close" data-dismiss="modal" (click)="close()"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-dismiss="modal"
+          (click)="close()"
+        ></button>
         <div class="transaction-userdetail-table">
           <table class="table table-striped">
             <tbody>
               <tr>
-                <td class="d-flex justify-content-between">Name<span>:</span></td>
-                <td>{{ userTransactionsPopup?.name}}</td>
+                <td class="d-flex justify-content-between">
+                  Name<span>:</span>
+                </td>
+                <td>{{ userTransactionsPopup?.name }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Mobile Number<span>:</span></td>
-                <td>{{ userTransactionsPopup?.mobileNumber}}</td>
+                <td class="d-flex justify-content-between">
+                  Mobile Number<span>:</span>
+                </td>
+                <td>{{ userTransactionsPopup?.mobileNumber }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Bank Account Number<span>:</span></td>
-                <td>{{ userTransactionsPopup?.bankAccountNumber}}</td>
+                <td class="d-flex justify-content-between">
+                  Bank Account Number<span>:</span>
+                </td>
+                <td>{{ userTransactionsPopup?.bankAccountNumber }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Bank IFSC Code<span>:</span></td>
-                <td>{{ userTransactionsPopup?.bankIFSCCode}}</td>
+                <td class="d-flex justify-content-between">
+                  Bank IFSC Code<span>:</span>
+                </td>
+                <td>{{ userTransactionsPopup?.bankIFSCCode }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Order Id<span>:</span></td>
-                <td>{{ userTransactionsPopup?.wallet_transactionId}}</td>
+                <td class="d-flex justify-content-between">
+                  Order Id<span>:</span>
+                </td>
+                <td>{{ userTransactionsPopup?.wallet_transactionId }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">UTR No<span>:</span></td>
-                <td>{{ userTransactionsPopup?.utr}}</td>
+                <td class="d-flex justify-content-between">
+                  UTR No<span>:</span>
+                </td>
+                <td>{{ userTransactionsPopup?.utr }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Sub total<span>:</span></td>
-                <td>₹{{ userTransactionsPopup?.subtotalAmount}}</td>
+                <td class="d-flex justify-content-between">
+                  Sub total<span>:</span>
+                </td>
+                <td>₹{{ userTransactionsPopup?.subtotalAmount }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Charges<span>:</span></td>
-                <td>₹{{ userTransactionsPopup?.charges}}</td>
+                <td class="d-flex justify-content-between">
+                  Charges<span>:</span>
+                </td>
+                <td>₹{{ userTransactionsPopup?.charges }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">GST Amount<span>:</span></td>
-                <td>₹{{ userTransactionsPopup?.GSTAmount}}</td>
+                <td class="d-flex justify-content-between">
+                  GST Amount<span>:</span>
+                </td>
+                <td>₹{{ userTransactionsPopup?.GSTAmount }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Amount<span>:</span></td>
-                <td>₹{{ userTransactionsPopup?.amount}}</td>
+                <td class="d-flex justify-content-between">
+                  Amount<span>:</span>
+                </td>
+                <td>₹{{ userTransactionsPopup?.amount }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Transaction Type<span>:</span></td>
+                <td class="d-flex justify-content-between">
+                  Transaction Type<span>:</span>
+                </td>
                 <td>
-                  <span *ngIf="userTransactionsPopup?.transactionType == 1">Recharge</span>
-                  <span *ngIf="userTransactionsPopup?.transactionType == 2">Payout</span>
-                  <span *ngIf="userTransactionsPopup?.transactionType == 3">Wallet Debit</span>
-                  <span *ngIf="userTransactionsPopup?.transactionType == 4">Wallet Credit</span>
+                  <span *ngIf="userTransactionsPopup?.transactionType == 1"
+                    >Recharge</span
+                  >
+                  <span *ngIf="userTransactionsPopup?.transactionType == 2"
+                    >Payout</span
+                  >
+                  <span *ngIf="userTransactionsPopup?.transactionType == 3"
+                    >Wallet Debit</span
+                  >
+                  <span *ngIf="userTransactionsPopup?.transactionType == 4"
+                    >Wallet Credit</span
+                  >
                 </td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Date<span>:</span></td>
-                <td>{{ userTransactionsPopup?.transactionDateTime | date:'MMM d y h:mm a' }}</td>
+                <td class="d-flex justify-content-between">
+                  Date<span>:</span>
+                </td>
+                <td>
+                  {{
+                    userTransactionsPopup?.transactionDateTime
+                      | date: "MMM d y h:mm a"
+                  }}
+                </td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Transactions Status<span>:</span></td>
-                <td class="padding-3px"><span class="process-bg">Processed</span>
+                <td class="d-flex justify-content-between">
+                  Transactions Status<span>:</span>
+                </td>
+                <td class="padding-3px">
+                  <span class="process-bg">Processed</span>
                   <!-- <span class="process-bg" *ngIf="userTransactionsPopup?.transactionStatus == 1">Recharge</span>
                   <span class="process-bg" *ngIf="userTransactionsPopup?.transactionStatus == 2">Payout</span>
                   <span class="process-bg" *ngIf="userTransactionsPopup?.transactionStatus == 3">Wallet Debit</span>
@@ -133,17 +219,35 @@ aria-hidden="true">
                 </td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Notes<span>:</span></td>
-                <td>{{ userTransactionsPopup?.notes}}</td>
+                <td class="d-flex justify-content-between">
+                  Notes<span>:</span>
+                </td>
+                <td>{{ userTransactionsPopup?.notes }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">Razorpay TransactionId<span>:</span></td>
-                <td>{{ userTransactionsPopup?.razorpay_TransactionId}}</td>
+                <td class="d-flex justify-content-between">
+                  Razorpay TransactionId<span>:</span>
+                </td>
+                <td>{{ userTransactionsPopup?.razorpay_TransactionId }}</td>
               </tr>
               <tr>
-                <td class="d-flex justify-content-between">INVOICE<span>:</span></td>
-                <td class="padding-6px">
-                  <button (click)="open()" class="btn btn-green">{{ userTransactionsPopup?.InvoiceFile}}</button>
+                <td class="d-flex justify-content-between">
+                  INVOICE<span>:</span>
+                </td>
+                <td
+                  class="padding-6px"
+                  *ngIf="
+                    userTransactionsPopup?.InvoiceFile?.length != 0 &&
+                    userTransactionsPopup?.InvoiceFile != 'NA'
+                  "
+                >
+                  <a
+                    class="btn btn-green"
+                    target="_blank"
+                    [href]="userTransactionsPopup?.InvoiceFile"
+                  >
+                    {{ userTransactionsPopup?.InvoiceFile }}
+                  </a>
                 </td>
               </tr>
             </tbody>
@@ -153,4 +257,3 @@ aria-hidden="true">
     </div>
   </div>
 </div>
-
